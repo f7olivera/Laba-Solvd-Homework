@@ -1,16 +1,20 @@
+package people;
+
 import java.util.ArrayList;
 
 public class Team {
+    private ArrayList<Developer> developers;
     private ProductOwner productOwner;
     private ScrumMaster scrumMaster;
-    private ArrayList<Developer> developers;
 
     public Team(ArrayList<Developer> developers) {
         this.developers = developers;
     }
 
     public Team(ArrayList<Developer> developers, ProductOwner productOwner, ScrumMaster scrumMaster) {
+        this.developers = developers;
         this.productOwner = productOwner;
+        this.scrumMaster = scrumMaster;
     }
 
     /*

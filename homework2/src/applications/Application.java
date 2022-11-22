@@ -1,8 +1,10 @@
+package applications;
+
 abstract public class Application {
-    protected static final int DEFAULT_NUMBER_OF_USERS = 1;
     private String name;
-    private int numberOfUsers = DEFAULT_NUMBER_OF_USERS;
+    private int numberOfUsers = 0;
     private int basePrice = 5000;
+    private float pricePerUser = 0;
     private int numberOfDevelopers = 1;
 
     public Application() {
@@ -13,20 +15,33 @@ abstract public class Application {
         this.name = name;
     }
 
+    public Application(String name, int basePrice) {
+        this.name = name;
+        this.basePrice = basePrice;
+    }
+
     public Application(String name, int numberOfUsers, int basePrice) {
         this.name = name;
         this.numberOfUsers = numberOfUsers;
         this.basePrice = basePrice;
     }
 
-    public Application(String name, int numberOfUsers, int basePrice, int numberOfDevelopers) {
+    public Application(String name, int basePrice, int numberOfDevelopers, float pricePerUser) {
         this.name = name;
-        this.numberOfUsers = numberOfUsers;
         this.basePrice = basePrice;
+        this.pricePerUser = pricePerUser;
         this.numberOfDevelopers = numberOfDevelopers;
     }
 
-    public int getPrice(float pricePerUser) {
+    public Application(String name, int numberOfUsers, int basePrice, int numberOfDevelopers, float pricePerUser) {
+        this.name = name;
+        this.numberOfUsers = numberOfUsers;
+        this.basePrice = basePrice;
+        this.pricePerUser = pricePerUser;
+        this.numberOfDevelopers = numberOfDevelopers;
+    }
+
+    public int getPrice() {
         return (int) (getBasePrice() + getNumberOfUsers() * pricePerUser);
     }
 
@@ -55,6 +70,14 @@ abstract public class Application {
 
     void setBasePrice(int basePrice) {
         this.basePrice = basePrice;
+    }
+
+    public float getPricePerUser() {
+        return this.pricePerUser;
+    }
+
+    void setPricePerUser(float pricePerUser) {
+        this.pricePerUser = pricePerUser;
     }
 
     public int getNumberOfDevelopers() {

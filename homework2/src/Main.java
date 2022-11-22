@@ -1,9 +1,13 @@
+import applications.DesktopApp;
+import applications.MobileApp;
+import applications.Website;
+import people.*;
+
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         Customer customer = new Customer("John", "Doe", (short) 45, 41412);
-        System.out.println(customer);
 
         // Create developer team
         ArrayList<Developer> developers = new ArrayList<>();
@@ -14,6 +18,7 @@ public class Main {
         // Create scrum master
         ArrayList<ScrumMaster> scrumMasters = new ArrayList<>();
         scrumMasters.add(new ScrumMaster(211,  3000));
+        scrumMasters.add(new ScrumMaster(210,  3000));
 
         // Create product owners
         ArrayList<ProductOwner> productOwners = new ArrayList<>();
@@ -23,11 +28,28 @@ public class Main {
         // Instantiate IT Company
         ITCompany itCompany = new ITCompany("Solvd", developers, scrumMasters, productOwners);
 
-        // Ask for requirements and quotation to build a website
-        MobileApp m = new MobileApp("asd");
+        /*
+         * Requirements and quotation for a Website
+         */
+        System.out.println("/*********** Website ***********/\n");
         String requirements = itCompany.getRequirements(new Website());
-        String requirements2 = itCompany.getRequirements(new MobileApp());
-        String requirements3 = itCompany.getRequirements(new DesktopApp());
-        Quotation quotation = itCompany.getQuotation(new Website());
+        System.out.println("Requirements to build a website: " + requirements + "\n");
+
+        Website website = new Website("Facebook", 5000);
+
+        Quotation quotation = itCompany.getQuotation(website);
+        System.out.println("Quotation for this project:\n" + quotation);
+
+        /*
+         * Requirements and quotation for a MobileApp
+         */
+        System.out.println("/*********** MobileApp ***********/\n");
+        String mobileAppRequirements = itCompany.getRequirements(new MobileApp());
+        System.out.println("Requirements to build a mobile app: " + mobileAppRequirements + "\n");
+
+        MobileApp app = new MobileApp("WhatsApp", "android");
+
+        Quotation appQuotation = itCompany.getQuotation(app);
+        System.out.println("Quotation for this project:\n" + appQuotation);
     }
 }

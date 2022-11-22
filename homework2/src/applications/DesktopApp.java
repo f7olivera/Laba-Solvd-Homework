@@ -1,13 +1,16 @@
+package applications;
+
 public class DesktopApp extends Application {
     private String platforms = "linux,mac,windows";
     private static final int BASE_PRICE = 9000;
+    private static final String REQUIREMENTS = "name and platforms to be supported";
 
     public DesktopApp() {
-        super("", DEFAULT_NUMBER_OF_USERS, BASE_PRICE);
+        super("", BASE_PRICE);
     }
 
     public DesktopApp(String name) {
-        super(name, DEFAULT_NUMBER_OF_USERS, BASE_PRICE);
+        super(name, BASE_PRICE);
     }
 
     public DesktopApp(String name, int numberOfUsers) {
@@ -19,14 +22,25 @@ public class DesktopApp extends Application {
         this.platforms = platforms;
     }
 
+    @Override
+    public String toString() {
+        return "- Application type: " + this.getClass().getSimpleName() + "\n" +
+                "- Name: " + this.getName() + "\n" +
+                "- Platforms: " + this.getPlatforms();
+    }
+
     /*
      * Getters and setters
      */
-    public String setPlatforms() {
+    public String getPlatforms() {
         return this.platforms;
     }
 
     void setPlatforms(String platforms) {
         this.platforms = platforms;
+    }
+
+    public static String getRequirements() {
+        return REQUIREMENTS;
     }
 }

@@ -1,6 +1,8 @@
+package people;
+
 public class Developer extends Worker {
     private String role;
-    private final int BASE_SALARY = 1000;
+    private final static int BASE_SALARY = 1000;
 
     public Developer(int employeeId) {
         super(employeeId);
@@ -27,5 +29,9 @@ public class Developer extends Worker {
 
     void setRole(String role) {
         this.role = role;
+    }
+
+    public static int getBaseSalary() {
+        return BASE_SALARY;
     }
 }

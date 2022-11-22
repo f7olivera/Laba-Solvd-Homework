@@ -1,8 +1,11 @@
+import applications.*;
+import people.*;
+
 import java.util.ArrayList;
 
 public class ITCompany {
     private String name;
-    private ArrayList<Project> projects;
+    private ArrayList<Project> projects = new ArrayList<Project>();
     private ArrayList<Developer> developers;
     private ArrayList<ScrumMaster> scrumMasters;
     private ArrayList<ProductOwner> productOwners;
@@ -23,17 +26,23 @@ public class ITCompany {
 
     public String getRequirements(Application application) {
         if (application.getClass() == Website.class) {
-            return "";
+            return Website.getRequirements();
         } else if (application.getClass() == MobileApp.class) {
-            return "";
+            return MobileApp.getRequirements();
         } else if (application.getClass() == DesktopApp.class) {
-            return "";
+            return DesktopApp.getRequirements();
         }
         return "";
     }
 
     public Quotation getQuotation(Application application) {
-        return new Quotation();
+        Project project = new Project(application, new Customer());
+
+        int appPrice = project.getApplication().getPrice();
+        int workersSalaries = ProductOwner.getBaseSalary() + ScrumMaster.getBaseSalary() +
+                              Developer.getBaseSalary() * application.getNumberOfDevelopers();
+
+        return new Quotation(appPrice, workersSalaries);
     }
 
     /*
@@ -47,7 +56,7 @@ public class ITCompany {
         this.name = name;
     }
 
-    public void addProject(Application application, Customer customer) {
+    public Project addProject(Application application, Customer customer) {
         // Create team based on the application needs
         ArrayList<Developer> ds = new ArrayList<Developer>();
         for (int i = 0; i < application.getNumberOfDevelopers() && !developers.isEmpty(); i++)
@@ -60,6 +69,7 @@ public class ITCompany {
 
         Project project = new Project(application, customer, team);
         this.projects.add(project);
+        return project;
     }
 
     public void removeProject(Project project) {

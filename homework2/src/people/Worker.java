@@ -1,3 +1,5 @@
+package people;
+
 public class Worker extends Person {
     private int employeeId;
     private int salary;
@@ -7,9 +9,19 @@ public class Worker extends Person {
         this.employeeId = employeeId;
     }
 
-    public Worker(int employeeId, int personId) {
-        super(personId);
+    public Worker(int employeeId, int salary) {
+        super();
         this.employeeId = employeeId;
+        this.salary = salary;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null) return false;
+        if(this.getClass() != obj.getClass()) return false;
+        if(this.hashCode() != obj.hashCode()) return false;
+
+        return employeeId == ((Worker) obj).getEmployeeId();
     }
 
     /*
