@@ -65,6 +65,11 @@ public class ITCompany {
         ProductOwner po = !productOwners.isEmpty() ? productOwners.remove(0) : null;
         ScrumMaster sm = !scrumMasters.isEmpty() ? scrumMasters.remove(0) : null;
 
+        if (ds.isEmpty() || po == null || sm == null) {
+            System.out.println("No workers available.");
+            System.exit(1);
+        }
+
         Team team = new Team(ds, po, sm);
 
         Project project = new Project(application, customer, team);
