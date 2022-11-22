@@ -26,6 +26,11 @@ public class MobileApp extends Application {
         this.operatingSystems = operatingSystems;
     }
 
+    public MobileApp(String name, int numberOfUsers, String operatingSystems, int numberOfDevelopers) {
+        super(name, numberOfUsers, BASE_PRICE, numberOfDevelopers, PRICE_PER_USER);
+        this.operatingSystems = operatingSystems;
+    }
+
     @Override
     public String toString() {
         return "- Application type: " + this.getClass().getSimpleName() + "\n" +

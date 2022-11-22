@@ -19,8 +19,8 @@ public class Website extends Application {
         super(name, numberOfUsers, BASE_PRICE, NUMBER_OF_DEVELOPERS, PRICE_PER_USER);
     }
 
-    public Website(String name, int numberOfUsers, String domain) {
-        super(name, numberOfUsers, BASE_PRICE, NUMBER_OF_DEVELOPERS, PRICE_PER_USER);
+    public Website(String name, int numberOfUsers, String domain, int numberOfDevelopers) {
+        super(name, numberOfUsers, BASE_PRICE, numberOfDevelopers, PRICE_PER_USER);
         this.domain = domain;
     }
 
