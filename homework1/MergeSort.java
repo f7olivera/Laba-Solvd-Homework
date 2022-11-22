@@ -6,7 +6,7 @@ public class MergeSort {
         int arr2[] = {1,2,3};
         int arr3[] = {6,1,24,5,1,2};
 
-        Boolean ok = true;
+        boolean ok = true;
 
         ok &= Arrays.equals(mergeSort(arr1), new int[] {});
         ok &= Arrays.equals(mergeSort(arr2), new int[] {1,2,3});
