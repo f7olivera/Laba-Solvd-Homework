@@ -1,4 +1,5 @@
 package people;
+
 import java.util.HashSet;
 import java.util.Objects;
 
@@ -26,8 +27,8 @@ public class Team {
         final Team other = (Team) obj;
 
         return developers.equals(other.developers) &&
-               productOwner.equals(other.productOwner) &&
-               scrumMaster.equals(other.scrumMaster);
+                productOwner.equals(other.productOwner) &&
+                scrumMaster.equals(other.scrumMaster);
     }
 
     @Override

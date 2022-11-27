@@ -1,5 +1,6 @@
 import applications.*;
 import people.*;
+
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -43,8 +44,8 @@ public class ITCompany {
     public Quotation getQuotation(Application application) {
         int appPrice = appDetails.get(application.getClass()).getPrice();
         int workersSalaries = baseSalaries.get(ProductOwner.class) +
-                              baseSalaries.get(ScrumMaster.class) +
-                              baseSalaries.get(Developer.class) * appDetails.get(application.getClass()).getNumberOfDevelopers();
+                baseSalaries.get(ScrumMaster.class) +
+                baseSalaries.get(Developer.class) * appDetails.get(application.getClass()).getNumberOfDevelopers();
 
         return new Quotation(appPrice, workersSalaries);
     }
