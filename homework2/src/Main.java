@@ -52,7 +52,7 @@ public class Main {
          */
         System.out.println("/*********** DesktopApp ***********/\n");
         String desktopAppRequirements = itCompany.getRequirements(DesktopApp.class);
-        System.out.println("Requirements to build a mobile app: " + desktopAppRequirements + "\n");
+        System.out.println("Requirements to build a desktop app: " + desktopAppRequirements + "\n");
 
         DesktopApp desktopApp = new DesktopApp("Firefox", "android");
 
