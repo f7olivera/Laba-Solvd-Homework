@@ -1,17 +1,17 @@
 package people;
-
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Objects;
 
 public class Team {
-    private ArrayList<Developer> developers;
+    private HashSet<Developer> developers;
     private ProductOwner productOwner;
     private ScrumMaster scrumMaster;
 
-    public Team(ArrayList<Developer> developers) {
+    public Team(HashSet<Developer> developers) {
         this.developers = developers;
     }
 
-    public Team(ArrayList<Developer> developers, ProductOwner productOwner, ScrumMaster scrumMaster) {
+    public Team(HashSet<Developer> developers, ProductOwner productOwner, ScrumMaster scrumMaster) {
         this.developers = developers;
         this.productOwner = productOwner;
         this.scrumMaster = scrumMaster;
@@ -28,7 +28,7 @@ public class Team {
         this.developers.remove(developer);
     }
 
-    public ArrayList<Developer> getDevelopers() {
+    public HashSet<Developer> getDevelopers() {
         return this.developers;
     }
 
