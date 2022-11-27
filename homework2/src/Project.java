@@ -3,6 +3,8 @@ import people.Customer;
 import people.Team;
 import people.Worker;
 
+import java.util.Objects;
+
 public class Project {
     private Application application;
     private Customer customer;
@@ -33,6 +35,11 @@ public class Project {
         if (this.hashCode() != obj.hashCode()) return false;
 
         return application == ((Project) obj).getApplication() && customer == ((Project) obj).getCustomer();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(application, customer);
     }
 
     /*
