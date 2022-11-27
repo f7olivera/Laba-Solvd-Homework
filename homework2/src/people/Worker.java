@@ -24,6 +24,11 @@ public class Worker extends Person {
         return employeeId == ((Worker) obj).getEmployeeId();
     }
 
+    @Override
+    public int hashCode() {
+        return employeeId;
+    }
+
     /*
      * Getters and setters
      */
