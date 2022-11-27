@@ -1,5 +1,7 @@
 package people;
 
+import java.util.Objects;
+
 public class Person {
     private String firstName;
     private String lastName;
@@ -34,6 +36,11 @@ public class Person {
         if(this.hashCode() != obj.hashCode()) return false;
 
         return id == ((Person) obj).getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 
     /*
