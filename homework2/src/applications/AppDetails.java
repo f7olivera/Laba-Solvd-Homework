@@ -1,3 +1,5 @@
+package applications;
+
 public class AppDetails {
     private String requirements;
     private int basePrice;
