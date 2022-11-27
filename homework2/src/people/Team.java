@@ -17,6 +17,24 @@ public class Team {
         this.scrumMaster = scrumMaster;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (this.getClass() != obj.getClass()) return false;
+        if (this.hashCode() != obj.hashCode()) return false;
+
+        final Team other = (Team) obj;
+
+        return developers.equals(other.developers) &&
+               productOwner.equals(other.productOwner) &&
+               scrumMaster.equals(other.scrumMaster);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(developers, productOwner, scrumMaster);
+    }
+
     /*
      * Getters and setters
      */
