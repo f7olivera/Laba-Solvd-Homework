@@ -1,23 +1,23 @@
 import applications.*;
 import people.*;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class ITCompany {
     private String name;
-    private ArrayList<Project> projects = new ArrayList<Project>();
-    private ArrayList<Developer> developers;
-    private ArrayList<ScrumMaster> scrumMasters;
-    private ArrayList<ProductOwner> productOwners;
+    private HashSet<Project> projects = new HashSet<>();
+    private HashSet<Developer> developers;
+    private HashSet<ScrumMaster> scrumMasters;
+    private HashSet<ProductOwner> productOwners;
 
     public ITCompany(String name) {
         this.name = name;
     }
 
     public ITCompany(String name,
-                     ArrayList<Developer> developers,
-                     ArrayList<ScrumMaster> scrumMasters,
-                     ArrayList<ProductOwner> productOwners) {
+                     HashSet<Developer> developers,
+                     HashSet<ScrumMaster> scrumMasters,
+                     HashSet<ProductOwner> productOwners) {
         this.name = name;
         this.developers = developers;
         this.scrumMasters = scrumMasters;
@@ -86,7 +86,7 @@ public class ITCompany {
         }
     }
 
-    public ArrayList<Project> getProjects() {
+    public HashSet<Project> getProjects() {
         return this.projects;
     }
 }
