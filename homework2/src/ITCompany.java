@@ -1,46 +1,50 @@
 import applications.*;
 import people.*;
-
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class ITCompany {
     private String name;
-    private HashSet<Project> projects = new HashSet<>();
+    private HashMap<Class<? extends Worker>, Integer> baseSalaries;
+    private HashMap<Class<? extends Application>, AppDetails> appDetails;
     private HashSet<Developer> developers;
     private HashSet<ScrumMaster> scrumMasters;
     private HashSet<ProductOwner> productOwners;
+    private HashSet<Project> projects = new HashSet<>();
 
     public ITCompany(String name) {
         this.name = name;
     }
 
     public ITCompany(String name,
+                     HashMap<Class<? extends Worker>, Integer> baseSalaries,
+                     HashMap<Class<? extends Application>, AppDetails> appDetails) {
+        this.name = name;
+        this.baseSalaries = baseSalaries;
+        this.appDetails = appDetails;
+    }
+
+    public ITCompany(String name,
+                     HashMap<Class<? extends Application>, AppDetails> appDetails,
                      HashSet<Developer> developers,
                      HashSet<ScrumMaster> scrumMasters,
                      HashSet<ProductOwner> productOwners) {
         this.name = name;
+        this.appDetails = appDetails;
         this.developers = developers;
         this.scrumMasters = scrumMasters;
         this.productOwners = productOwners;
     }
 
-    public String getRequirements(Application application) {
-        if (application.getClass() == Website.class) {
-            return Website.getRequirements();
-        } else if (application.getClass() == MobileApp.class) {
-            return MobileApp.getRequirements();
-        } else if (application.getClass() == DesktopApp.class) {
-            return DesktopApp.getRequirements();
-        }
-        return "";
+    public String getRequirements(Class<? extends Application> appClass) {
+        return appDetails.get(appClass).getRequirements();
     }
 
     public Quotation getQuotation(Application application) {
-        Project project = new Project(application, new Customer());
-
-        int appPrice = project.getApplication().getPrice();
-        int workersSalaries = ProductOwner.getBaseSalary() + ScrumMaster.getBaseSalary() +
-                              Developer.getBaseSalary() * application.getNumberOfDevelopers();
+        int appPrice = appDetails.get(application.getClass()).getPrice();
+        int workersSalaries = baseSalaries.get(ProductOwner.class) +
+                              baseSalaries.get(ScrumMaster.class) +
+                              baseSalaries.get(Developer.class) * appDetails.get(application.getClass()).getNumberOfDevelopers();
 
         return new Quotation(appPrice, workersSalaries);
     }
@@ -56,14 +60,20 @@ public class ITCompany {
         this.name = name;
     }
 
+    public HashSet<Project> getProjects() {
+        return this.projects;
+    }
+
     public Project addProject(Application application, Customer customer) {
-        if (developers.size() < application.getNumberOfDevelopers() || productOwners.isEmpty() || scrumMasters.isEmpty()) {
+        if (developers.size() < appDetails.get(application.getClass()).getNumberOfDevelopers()
+                || productOwners.isEmpty()
+                || scrumMasters.isEmpty()) {
             System.out.println("No workers available.");
             System.exit(1);
         } else {
             // Create team based on the application needs
             HashSet<Developer> devs = new HashSet<>();
-            for (int i = 0; i < application.getNumberOfDevelopers(); i++) {
+            for (int i = 0; i < appDetails.get(application.getClass()).getNumberOfDevelopers(); i++) {
                 devs.add(developers.iterator().next());
                 developers.remove(developers.iterator().next());
             }
@@ -93,7 +103,11 @@ public class ITCompany {
         }
     }
 
-    public HashSet<Project> getProjects() {
-        return this.projects;
+    public HashMap<Class<? extends Application>, AppDetails> getAppDetails() {
+        return this.appDetails;
+    }
+
+    public void setAppDetails(HashMap<Class<? extends Application>, AppDetails> appDetails) {
+        this.appDetails = appDetails;
     }
 }
