@@ -9,7 +9,7 @@ public class Quotation {
 
     @Override
     public String toString() {
-        return "Total: $" + appPrice + workersSalaries + "\n" +
+        return "Total: $" + (appPrice + workersSalaries) + "\n" +
                 "- Application price: $" + appPrice + "\n" +
                 "- Workers Salaries: $" + workersSalaries + "\n";
     }
