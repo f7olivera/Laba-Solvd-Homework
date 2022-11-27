@@ -57,24 +57,31 @@ public class ITCompany {
     }
 
     public Project addProject(Application application, Customer customer) {
-        // Create team based on the application needs
-        ArrayList<Developer> ds = new ArrayList<Developer>();
-        for (int i = 0; i < application.getNumberOfDevelopers() && !developers.isEmpty(); i++)
-            ds.add(developers.remove(0));
-
-        ProductOwner po = !productOwners.isEmpty() ? productOwners.remove(0) : null;
-        ScrumMaster sm = !scrumMasters.isEmpty() ? scrumMasters.remove(0) : null;
-
-        if (ds.isEmpty() || po == null || sm == null) {
+        if (developers.size() < application.getNumberOfDevelopers() || productOwners.isEmpty() || scrumMasters.isEmpty()) {
             System.out.println("No workers available.");
             System.exit(1);
+        } else {
+            // Create team based on the application needs
+            HashSet<Developer> devs = new HashSet<>();
+            for (int i = 0; i < application.getNumberOfDevelopers(); i++) {
+                devs.add(developers.iterator().next());
+                developers.remove(developers.iterator().next());
+            }
+
+            ProductOwner po = productOwners.iterator().next();
+            productOwners.remove(productOwners.iterator().next());
+
+            ScrumMaster sm = scrumMasters.iterator().next();
+            scrumMasters.remove(scrumMasters.iterator().next());
+
+            Team team = new Team(devs, po, sm);
+
+            Project project = new Project(application, customer, team);
+            this.projects.add(project);
+
+            return project;
         }
-
-        Team team = new Team(ds, po, sm);
-
-        Project project = new Project(application, customer, team);
-        this.projects.add(project);
-        return project;
+        return null;
     }
 
     public void removeProject(Project project) {
