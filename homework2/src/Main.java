@@ -54,7 +54,7 @@ public class Main {
         String desktopAppRequirements = itCompany.getRequirements(DesktopApp.class);
         System.out.println("Requirements to build a desktop app: " + desktopAppRequirements + "\n");
 
-        DesktopApp desktopApp = new DesktopApp("Firefox", "android");
+        DesktopApp desktopApp = new DesktopApp("Firefox", "linux");
 
         Quotation desktopAppQuotation = itCompany.getQuotation(desktopApp);
         System.out.println("Quotation for this project:\n" + desktopAppQuotation);
