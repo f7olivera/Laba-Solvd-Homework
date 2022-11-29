@@ -17,7 +17,7 @@ public class Main {
 
         // Define app details
         HashMap<Class<? extends Application>, AppDetails> appDetails = new HashMap<>();
-        appDetails.put(Website.class, new AppDetails("name, domain and expected number of users", 10000));
+        appDetails.put(Website.class, new AppDetails("name, domain and expected number of users", 10000, 0.25F, 4));
         appDetails.put(MobileApp.class, new AppDetails("name, operating systems to be supported and expected number of users", 7500));
         appDetails.put(DesktopApp.class, new AppDetails("name and platforms to be supported", 5000));
 
@@ -30,7 +30,7 @@ public class Main {
         String requirements = itCompany.getRequirements(Website.class);
         System.out.println("Requirements to build a website: " + requirements + "\n");
 
-        Website website = new Website("Facebook", "www.facebook.com");
+        Website website = new Website("Facebook", "www.facebook.com", 50000);
 
         Quotation quotation = itCompany.getQuotation(website);
         System.out.println("Quotation for this project:\n" + quotation);
@@ -42,7 +42,7 @@ public class Main {
         String mobileAppRequirements = itCompany.getRequirements(MobileApp.class);
         System.out.println("Requirements to build a mobile app: " + mobileAppRequirements + "\n");
 
-        MobileApp app = new MobileApp("WhatsApp", "android");
+        MobileApp app = new MobileApp("WhatsApp", "android", 1000);
 
         Quotation appQuotation = itCompany.getQuotation(app);
         System.out.println("Quotation for this project:\n" + appQuotation);

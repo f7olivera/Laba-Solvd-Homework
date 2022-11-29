@@ -3,8 +3,8 @@ package applications;
 public class Website extends Application {
     private String domain;
 
-    public Website(String name, String domain) {
-        super(name);
+    public Website(String name, String domain, int numberOfUsers) {
+        super(name, numberOfUsers);
         this.domain = domain;
     }
 

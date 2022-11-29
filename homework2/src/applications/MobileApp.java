@@ -9,6 +9,11 @@ public class MobileApp extends Application {
         this.operatingSystems = operatingSystems;
     }
 
+    public MobileApp(String name, String operatingSystems, int numberOfUsers) {
+        super(name, numberOfUsers);
+        this.operatingSystems = operatingSystems;
+    }
+
     @Override
     public String toString() {
         return "- Application type: " + this.getClass().getSimpleName() + "\n" +
