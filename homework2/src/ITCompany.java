@@ -4,8 +4,7 @@ import people.*;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class ITCompany {
-    private String name;
+public class ITCompany extends Company {
     private HashMap<Class<? extends Worker>, Integer> baseSalaries;
     private HashMap<Class<? extends Application>, AppDetails> appDetails;
     private HashSet<Developer> developers;
@@ -14,13 +13,13 @@ public class ITCompany {
     private HashSet<Project> projects = new HashSet<>();
 
     public ITCompany(String name) {
-        this.name = name;
+        super(name);
     }
 
     public ITCompany(String name,
                      HashMap<Class<? extends Worker>, Integer> baseSalaries,
                      HashMap<Class<? extends Application>, AppDetails> appDetails) {
-        this.name = name;
+        super(name);
         this.baseSalaries = baseSalaries;
         this.appDetails = appDetails;
     }
@@ -30,7 +29,7 @@ public class ITCompany {
                      HashSet<Developer> developers,
                      HashSet<ScrumMaster> scrumMasters,
                      HashSet<ProductOwner> productOwners) {
-        this.name = name;
+        super(name);
         this.appDetails = appDetails;
         this.developers = developers;
         this.scrumMasters = scrumMasters;
@@ -54,17 +53,39 @@ public class ITCompany {
         return details.getBasePrice() + (int) (application.getNumberOfUsers() * details.getPricePerUser());
     }
 
+    @Override
+    public void hireWorker(Object worker) {
+        if(worker.getClass() == Developer.class)
+            developers.add((Developer) worker);
+        else if(worker.getClass() == ProductOwner.class)
+            productOwners.add((ProductOwner) worker);
+        else if(worker.getClass() == ScrumMaster.class)
+            scrumMasters.add((ScrumMaster) worker);
+    }
+
+    @Override
+    public void fireWorker(Object worker) {
+        if(worker.getClass() == Developer.class)
+            developers.remove((Developer) worker);
+        else if(worker.getClass() == ProductOwner.class)
+            productOwners.remove((ProductOwner) worker);
+        else if(worker.getClass() == ScrumMaster.class)
+            scrumMasters.remove((ScrumMaster) worker);
+    }
+
+    @Override
+    public HashSet<? extends Worker> getWorkers() {
+        HashSet<Worker> workers = new HashSet<>();
+        workers.addAll(developers);
+        workers.addAll(productOwners);
+        workers.addAll(scrumMasters);
+
+        return workers;
+    }
+
     /*
      * Getters and setters
      */
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public HashSet<Project> getProjects() {
         return this.projects;
     }

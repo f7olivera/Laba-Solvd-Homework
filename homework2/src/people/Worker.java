@@ -1,6 +1,6 @@
 package people;
 
-public class Worker extends Person {
+public abstract class Worker extends Person {
     private int employeeId;
     private int salary;
 
