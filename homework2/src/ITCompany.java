@@ -42,12 +42,16 @@ public class ITCompany {
     }
 
     public Quotation getQuotation(Application application) {
-        int appPrice = appDetails.get(application.getClass()).getPrice();
         int workersSalaries = baseSalaries.get(ProductOwner.class) +
                 baseSalaries.get(ScrumMaster.class) +
                 baseSalaries.get(Developer.class) * appDetails.get(application.getClass()).getNumberOfDevelopers();
 
-        return new Quotation(appPrice, workersSalaries);
+        return new Quotation(getAppPrice(application), workersSalaries);
+    }
+
+    public int getAppPrice(Application application) {
+        AppDetails details = appDetails.get(application.getClass());
+        return details.getBasePrice() + (int) (application.getNumberOfUsers() * details.getPricePerUser());
     }
 
     /*

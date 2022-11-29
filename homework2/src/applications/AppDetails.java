@@ -18,10 +18,6 @@ public class AppDetails {
         this.numberOfDevelopers = numberOfDevelopers;
     }
 
-    public int getPrice() {
-        return (int) (basePrice + numberOfUsers * pricePerUser);
-    }
-
     /*
      * Getters and setters
      */
