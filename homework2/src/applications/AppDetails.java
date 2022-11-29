@@ -4,7 +4,6 @@ public class AppDetails {
     private String requirements;
     private int basePrice;
     private float pricePerUser = 0;
-    private int numberOfUsers = 1;
     private int numberOfDevelopers = 1;
 
     public AppDetails(String requirements, int basePrice) {
@@ -12,11 +11,10 @@ public class AppDetails {
         this.basePrice = basePrice;
     }
 
-    public AppDetails(String requirements, int basePrice, float pricePerUser, int numberOfUsers, int numberOfDevelopers) {
+    public AppDetails(String requirements, int basePrice, float pricePerUser, int numberOfDevelopers) {
         this.requirements = requirements;
         this.basePrice = basePrice;
         this.pricePerUser = pricePerUser;
-        this.numberOfUsers = numberOfUsers;
         this.numberOfDevelopers = numberOfDevelopers;
     }
 
@@ -33,14 +31,6 @@ public class AppDetails {
 
     public void setRequirements(String requirements) {
         this.requirements = requirements;
-    }
-
-    public int getNumberOfUsers() {
-        return this.numberOfUsers;
-    }
-
-    void setNumberOfUsers(int numberOfUsers) {
-        this.numberOfUsers = numberOfUsers;
     }
 
     public int getBasePrice() {
