@@ -1,6 +1,6 @@
 package applications;
 
-abstract public class Application {
+public class Application {
     private String name;
     private int numberOfUsers = 1;
 
