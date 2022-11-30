@@ -1,3 +1,5 @@
+package company;
+
 import people.Worker;
 
 import java.util.HashSet;
@@ -10,7 +12,9 @@ public abstract class Company {
     }
 
     public abstract void hireWorker(Object worker);
+
     public abstract void fireWorker(Object worker);
+
     public abstract HashSet<? extends Worker> getWorkers();
 
     /*

@@ -1,3 +1,5 @@
+package company;
+
 import applications.*;
 import people.*;
 

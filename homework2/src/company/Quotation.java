@@ -1,3 +1,5 @@
+package company;
+
 public class Quotation {
     private int appPrice;
     private int workersSalaries;

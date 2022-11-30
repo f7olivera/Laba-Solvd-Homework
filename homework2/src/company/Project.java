@@ -1,7 +1,8 @@
+package company;
+
 import applications.Application;
 import people.Customer;
 import people.Team;
-import people.Worker;
 
 import java.util.Objects;
 
@@ -23,7 +24,7 @@ public class Project {
 
     @Override
     public String toString() {
-        return "Project to build a " + application.getClass().getSimpleName() +
+        return "company.Project to build a " + application.getClass().getSimpleName() +
                 " for " + customer.getFullName() + "\n" +
                 "Details:\n" + application.toString();
     }
