@@ -2,7 +2,7 @@ package applications;
 
 import interfaces.IDeploy;
 
-public class DesktopApp extends Application implements IDeploy {
+public class DesktopApp extends Application {
     public final static String ENVIRONMENTS = "linux,mac,windows";
 
     public DesktopApp(String name) {

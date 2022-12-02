@@ -2,7 +2,7 @@ package applications;
 
 import interfaces.IDeploy;
 
-public abstract class Application {
+public abstract class Application implements IDeploy {
     private String name;
     private String supportedEnvironments;
     private int numberOfUsers = 1;
