@@ -11,11 +11,11 @@ public abstract class Company {
         this.name = name;
     }
 
-    public abstract void hireWorker(Object worker);
+    public abstract void hireWorker(Worker worker);
 
-    public abstract void fireWorker(Object worker);
+    public abstract void fireWorker(Worker worker);
 
-    public abstract HashSet<? extends Worker> getWorkers();
+    public abstract HashSet<Worker> getWorkers();
 
     /*
      * Getters and setters

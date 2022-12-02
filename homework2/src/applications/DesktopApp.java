@@ -1,32 +1,27 @@
 package applications;
 
-public class DesktopApp extends Application {
-    private String platforms = "linux,mac,windows";
+import interfaces.IDeploy;
+
+public class DesktopApp extends Application implements IDeploy {
+    public final static String ENVIRONMENTS = "linux,mac,windows";
 
     public DesktopApp(String name) {
-        super(name);
+        super(name, ENVIRONMENTS);
     }
 
-    public DesktopApp(String name, String platforms) {
-        super(name);
-        this.platforms = platforms;
+    public DesktopApp(String name, String supportedEnvironments) {
+        super(name, supportedEnvironments);
+    }
+
+    @Override
+    public void deploy() {
+        System.out.println("asd");
     }
 
     @Override
     public String toString() {
         return "- Application type: " + this.getClass().getSimpleName() + "\n" +
                 "- Name: " + this.getName() + "\n" +
-                "- Platforms: " + this.getPlatforms();
-    }
-
-    /*
-     * Getters and setters
-     */
-    public String getPlatforms() {
-        return this.platforms;
-    }
-
-    void setPlatforms(String platforms) {
-        this.platforms = platforms;
+                "- Platforms: " + this.getSupportedEnvironments();
     }
 }

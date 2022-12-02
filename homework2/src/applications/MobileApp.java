@@ -1,34 +1,32 @@
 package applications;
 
-public class MobileApp extends Application {
-    // Consider all operating systems by default
-    private String operatingSystems = "iOS,android";
+import interfaces.IDeploy;
 
-    public MobileApp(String name, String operatingSystems) {
-        super(name);
-        this.operatingSystems = operatingSystems;
+public class MobileApp extends Application implements IDeploy {
+    public final static String ENVIRONMENTS = "iOS,android";
+
+    public MobileApp(String name) {
+        // Consider all operating systems by default
+        super(name, ENVIRONMENTS);
     }
 
-    public MobileApp(String name, String operatingSystems, int numberOfUsers) {
-        super(name, numberOfUsers);
-        this.operatingSystems = operatingSystems;
+    public MobileApp(String name, String supportedEnvironments) {
+        super(name, supportedEnvironments);
+    }
+
+    public MobileApp(String name, int numberOfUsers, String supportedEnvironments) {
+        super(name, supportedEnvironments, numberOfUsers);
+    }
+
+    @Override
+    public void deploy() {
+
     }
 
     @Override
     public String toString() {
         return "- Application type: " + this.getClass().getSimpleName() + "\n" +
                 "- Name: " + this.getName() + "\n" +
-                "- Operating Systems: " + this.getOperatingSystems() + "\n";
-    }
-
-    /*
-     * Getters and setters
-     */
-    public String getOperatingSystems() {
-        return this.operatingSystems;
-    }
-
-    void setOperatingSystems(String operatingSystems) {
-        this.operatingSystems = operatingSystems;
+                "- Operating Systems: " + this.getSupportedEnvironments() + "\n";
     }
 }

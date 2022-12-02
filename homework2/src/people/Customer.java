@@ -1,31 +1,30 @@
 package people;
 
 public class Customer extends Person {
-    private int customerId;
+    private int budget;
 
     public Customer() {
         super();
     }
 
-    public Customer(int id, int customerId) {
+    public Customer(int id, int budget) {
         super(id);
-        this.customerId = customerId;
+        this.budget = budget;
     }
 
-    public Customer(String firstName, String lastName, short age, int id, int customerId) {
+    public Customer(String firstName, String lastName, short age, int id, int budget) {
         super(firstName, lastName, age, id);
-        this.customerId = customerId;
+        this.budget = budget;
     }
-
 
     /*
      * Getters and setters
      */
     public int getCustomerId() {
-        return this.customerId;
+        return this.budget;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomerId(int budget) {
+        this.budget = budget;
     }
 }

@@ -10,6 +10,7 @@ public class Project {
     private Application application;
     private Customer customer;
     private Team team;
+    private ProjectState projectState = ProjectState.UNBEGUN;
 
     public Project(Application application, Customer customer) {
         this.application = application;
@@ -24,7 +25,7 @@ public class Project {
 
     @Override
     public String toString() {
-        return "company.Project to build a " + application.getClass().getSimpleName() +
+        return "Project to build a " + application.getClass().getSimpleName() +
                 " for " + customer.getFullName() + "\n" +
                 "Details:\n" + application.toString();
     }
@@ -68,5 +69,13 @@ public class Project {
 
     void setTeam(Team team) {
         this.team = team;
+    }
+
+    public ProjectState getState() {
+        return this.projectState;
+    }
+
+    void setState(ProjectState projectState) {
+        this.projectState = projectState;
     }
 }
