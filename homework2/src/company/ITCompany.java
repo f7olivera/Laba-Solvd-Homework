@@ -10,7 +10,7 @@ import java.util.HashSet;
 
 public class ITCompany extends Company implements IEmploy, IDevelop {
     private HashMap<Class<? extends Worker>, Integer> baseSalaries;
-    private HashMap<Class<? extends Application>, AppDetails> appDetails;
+    private HashSet<Application> baseApplications;
     private HashSet<Developer> developers;
     private HashSet<ScrumMaster> scrumMasters;
     private HashSet<ProductOwner> productOwners;
@@ -37,6 +37,7 @@ public class ITCompany extends Company implements IEmploy, IDevelop {
                      HashSet<ScrumMaster> scrumMasters,
                      HashSet<ProductOwner> productOwners) {
         super(name);
+        initBaseApplications();
         this.baseSalaries = baseSalaries;
         this.appDetails = appDetails;
         this.developers = developers;
@@ -155,6 +156,10 @@ public class ITCompany extends Company implements IEmploy, IDevelop {
             return baseSalaries.get(worker.getClass());
         else
             return worker.getSalary();
+    }
+
+    public void addApplication(Application application) {
+        baseApplications.add(application);
     }
 
     /*
