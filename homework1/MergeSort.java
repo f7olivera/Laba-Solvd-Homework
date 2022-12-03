@@ -47,7 +47,7 @@ public class MergeSort {
             }
         }
 
-        // Add any elements left in either of the arrays
+        // Add elements left in either of the arrays
         while (left < arr1.length) {
             result[i] = arr1[left];
             left++;

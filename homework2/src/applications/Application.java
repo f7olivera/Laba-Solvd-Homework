@@ -6,11 +6,6 @@ public abstract class Application implements IDeploy {
     private String name;
     private String supportedEnvironments;
     private int numberOfUsers = 1;
-    private AppDetails appDetails;
-
-    public Application(AppDetails appDetails) {
-        this.appDetails = appDetails;
-    }
 
     public Application(String name, String supportedEnvironments) {
         this.name = name;
