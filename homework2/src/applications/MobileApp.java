@@ -5,6 +5,10 @@ import interfaces.IDeploy;
 public class MobileApp extends Application {
     public final static String ENVIRONMENTS = "iOS,android";
 
+    public MobileApp(AppDetails appDetails) {
+        super(appDetails);
+    }
+
     public MobileApp(String name) {
         // Consider all operating systems by default
         super(name, ENVIRONMENTS);
@@ -20,7 +24,7 @@ public class MobileApp extends Application {
 
     @Override
     public void deploy() {
-
+        System.out.println("Deploying MobileApp\n" + toString());
     }
 
     @Override

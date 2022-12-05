@@ -16,6 +16,10 @@ public class Quotation {
                 "- Workers Salaries: $" + workersSalaries + "\n";
     }
 
+    public int getTotal() {
+        return appPrice + workersSalaries;
+    }
+
     /*
      * Getters and setters
      */

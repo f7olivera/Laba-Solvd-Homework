@@ -6,6 +6,10 @@ public class Website extends Application {
     public final static String ENVIRONMENTS = "chrome,edge,safari,firefox,opera,ie";
     private String domain;
 
+    public Website(AppDetails appDetails) {
+        super(appDetails);
+    }
+
     public Website(String name, int numberOfUsers, String domain) {
         super(name, ENVIRONMENTS, numberOfUsers);
         this.domain = domain;
@@ -18,7 +22,7 @@ public class Website extends Application {
 
     @Override
     public void deploy() {
-
+        System.out.println("Deploying Website\n" + toString());
     }
 
     @Override

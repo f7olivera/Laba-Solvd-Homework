@@ -1,12 +1,8 @@
 import company.ITCompany;
 import company.Project;
-import company.ProjectState;
 import company.Quotation;
 import applications.*;
 import people.*;
-
-import java.util.HashMap;
-import java.util.HashSet;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,34 +29,31 @@ public class Main {
     }
 
     /**
-     * Creates an instance of IT Company
+     * Create an instance of ITCompany
      */
     public static ITCompany initITCompany() {
+        ITCompany itCompany = new ITCompany("Solvd");
+
         // Define base salaries for every worker
-        HashMap<Class<? extends Worker>, Integer> baseSalaries = new HashMap<>();
-        baseSalaries.put(Developer.class, 1000);
-        baseSalaries.put(ProductOwner.class, 2500);
-        baseSalaries.put(ScrumMaster.class, 1000);
+        itCompany.setBaseSalary(Developer.class, 1000);
+        itCompany.setBaseSalary(ProductOwner.class, 2500);
+        itCompany.setBaseSalary(ScrumMaster.class, 1000);
 
         // Define app details
-        HashMap<Class<? extends Application>, AppDetails> appDetails = new HashMap<>();
-        appDetails.put(Website.class, new AppDetails("name, domain and expected number of users", 10000, 0.25F, 4));
-        appDetails.put(MobileApp.class, new AppDetails("name, operating systems to be supported and expected number of users", 7500));
-        appDetails.put(DesktopApp.class, new AppDetails("name and platforms to be supported", 5000));
+        itCompany.addApp(new Website(new AppDetails("name, domain and expected number of users", 10000, 0.25F, 4)));
+        itCompany.addApp(new MobileApp(new AppDetails("name, operating systems to be supported and expected number of users", 7500)));
+        itCompany.addApp(new DesktopApp(new AppDetails("name and platforms to be supported", 5000)));
 
-        HashSet<Developer> developers = new HashSet<>();
-        developers.add(new Developer(1, "frontend"));
-        developers.add(new Developer(2, "frontend"));
-        developers.add(new Developer(3, "backend"));
-        developers.add(new Developer(4, "full-stack"));
+        // Hire workers
+        itCompany.hireWorker(new Developer(1, "frontend"));
+        itCompany.hireWorker(new Developer(2, "frontend"));
+        itCompany.hireWorker(new Developer(3, "backend"));
+        itCompany.hireWorker(new Developer(4, "full-stack"));
 
-        HashSet<ProductOwner> productOwners = new HashSet<>();
-        productOwners.add(new ProductOwner(6));
+        itCompany.hireWorker(new ProductOwner(6));
+        itCompany.hireWorker(new ScrumMaster(5));
 
-        HashSet<ScrumMaster> scrumMasters = new HashSet<>();
-        scrumMasters.add(new ScrumMaster(5));
-
-        return new ITCompany("Solvd", baseSalaries, appDetails, developers, scrumMasters, productOwners);
+        return itCompany;
     }
 
     /**
@@ -68,7 +61,7 @@ public class Main {
      */
     public static void printExample(ITCompany itCompany, Application app) {
         System.out.printf("/*********** %s ***********/\n%n", app.getClass().getSimpleName());
-        String appRequirements = itCompany.getRequirements(app.getClass());
+        String appRequirements = itCompany.getRequirements(app);
         System.out.println(String.format("Requirements to build a %s: ", app.getClass().getSimpleName()) + appRequirements + ".\n");
 
         Quotation appQuotation = itCompany.getQuotation(app);

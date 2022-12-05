@@ -1,6 +1,8 @@
 package people;
 
-public class Worker extends Person {
+import interfaces.IWork;
+
+public class Worker extends Person implements IWork {
     private int employeeId;
     private int salary;
 
@@ -13,6 +15,16 @@ public class Worker extends Person {
         super();
         this.employeeId = employeeId;
         this.salary = salary;
+    }
+
+    @Override
+    public void startWork() {
+        System.out.println("Employee " + employeeId + " starts working.");
+    }
+
+    @Override
+    public void leaveWork() {
+        System.out.println("Employee " + employeeId + " stops working.");
     }
 
     @Override

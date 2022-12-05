@@ -4,8 +4,14 @@ import interfaces.IDeploy;
 
 public abstract class Application implements IDeploy {
     private String name;
+
+    private AppDetails appDetails;
     private String supportedEnvironments;
     private int numberOfUsers = 1;
+
+    public Application(AppDetails appDetails) {
+        this.appDetails = appDetails;
+    }
 
     public Application(String name, String supportedEnvironments) {
         this.name = name;
@@ -18,7 +24,9 @@ public abstract class Application implements IDeploy {
         this.numberOfUsers = numberOfUsers;
     }
 
-    public abstract void deploy();
+    public int getAppPrice() {
+        return appDetails.getBasePrice() + (int) (numberOfUsers * appDetails.getPricePerUser());
+    }
 
     /*
      * Getters and setters
@@ -45,5 +53,13 @@ public abstract class Application implements IDeploy {
 
     void setNumberOfUsers(int numberOfUsers) {
         this.numberOfUsers = numberOfUsers;
+    }
+
+    public AppDetails getAppDetails() {
+        return appDetails;
+    }
+
+    public void setAppDetails(AppDetails appDetails) {
+        this.appDetails = appDetails;
     }
 }

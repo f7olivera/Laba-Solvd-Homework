@@ -1,6 +1,8 @@
 package people;
 
-public class Customer extends Person {
+import interfaces.IFinance;
+
+public class Customer extends Person implements IFinance {
     private int budget;
 
     public Customer() {
@@ -17,14 +19,24 @@ public class Customer extends Person {
         this.budget = budget;
     }
 
+    @Override
+    public void earn(int ammount) {
+        budget -= ammount;
+    }
+
+    @Override
+    public void spend(int ammount) {
+        budget += ammount;
+    }
+
     /*
      * Getters and setters
      */
-    public int getCustomerId() {
+    public int getBudget() {
         return this.budget;
     }
 
-    public void setCustomerId(int budget) {
+    public void setBudget(int budget) {
         this.budget = budget;
     }
 }

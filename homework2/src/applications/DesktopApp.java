@@ -5,6 +5,10 @@ import interfaces.IDeploy;
 public class DesktopApp extends Application {
     public final static String ENVIRONMENTS = "linux,mac,windows";
 
+    public DesktopApp(AppDetails appDetails) {
+        super(appDetails);
+    }
+
     public DesktopApp(String name) {
         super(name, ENVIRONMENTS);
     }
@@ -15,7 +19,7 @@ public class DesktopApp extends Application {
 
     @Override
     public void deploy() {
-        System.out.println("asd");
+        System.out.println("Deploying DesktopApp\n" + toString());
     }
 
     @Override

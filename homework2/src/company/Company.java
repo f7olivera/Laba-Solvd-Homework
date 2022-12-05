@@ -1,10 +1,9 @@
 package company;
 
+import interfaces.IEmploy;
 import people.Worker;
 
-import java.util.HashSet;
-
-public abstract class Company {
+public abstract class Company implements IEmploy {
     private String name;
 
     public Company(String name) {
@@ -14,8 +13,6 @@ public abstract class Company {
     public abstract void hireWorker(Worker worker);
 
     public abstract void fireWorker(Worker worker);
-
-    public abstract HashSet<Worker> getWorkers();
 
     /*
      * Getters and setters
