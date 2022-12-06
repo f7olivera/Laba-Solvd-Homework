@@ -3,6 +3,8 @@ package company;
 import applications.*;
 import exceptions.*;
 import interfaces.IDevelop;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import people.*;
 
 import java.util.HashMap;
@@ -13,6 +15,9 @@ public class ITCompany extends Company implements IDevelop {
     private final HumanResources humanResources = new HumanResources();
     private final ProjectsManager projectsManager = new ProjectsManager();
 
+    private final static Logger log = LogManager.getLogger(ITCompany.class);
+
+
     public ITCompany(String name) {
         super(name);
     }
@@ -21,7 +26,7 @@ public class ITCompany extends Company implements IDevelop {
         return baseApps.get(application.getClass()).getAppDetails().getRequirements();
     }
 
-    public Quotation getQuotation(Application application) throws NoWorkersAvailableException {
+    public Quotation getQuotation(Application application) {
         Team team = createTeam(application);
 
         int workersSalaries = humanResources.getSalary(team.getScrumMaster()) + humanResources.getSalary(team.getProductOwner());
@@ -42,22 +47,23 @@ public class ITCompany extends Company implements IDevelop {
         projectsManager.finishProject(project);
     }
 
-    public Team createTeam(Application application) throws NoWorkersAvailableException {
-        AppDetails appDetails = baseApps.get(application.getClass()).getAppDetails();
+    public Team createTeam(Application application) {
+        try {
+            AppDetails appDetails = baseApps.get(application.getClass()).getAppDetails();
+            HashSet<Developer> devs = new HashSet<>();
+            for (int i = 0; i < appDetails.getNumberOfDevelopers(); i++)
+                devs.add((Developer) humanResources.getWorker(Developer.class));
 
-        HashSet<Developer> devs = new HashSet<>();
-        for (int i = 0; i < appDetails.getNumberOfDevelopers(); i++)
-            devs.add((Developer) humanResources.getWorker(Developer.class));
-
-        return new Team(devs,
-                (ProductOwner) humanResources.getWorker(ProductOwner.class),
-                (ScrumMaster) humanResources.getWorker(ScrumMaster.class));
+            return new Team(devs,
+                    (ProductOwner) humanResources.getWorker(ProductOwner.class),
+                    (ScrumMaster) humanResources.getWorker(ScrumMaster.class));
+        } catch (NoWorkersAvailableException e) {
+            log.error(e);
+        }
+        return null;
     }
 
     public void disassembleTeam(Team team) {
-//        if (!projectsManager.getProjects().contains(project))
-//            throw new ProjectNotFoundException("Project does not belong to this company.");
-//        else {
             for (Developer dev : team.getDevelopers())
                 humanResources.addWorker(dev);
             humanResources.addWorker(team.getScrumMaster());

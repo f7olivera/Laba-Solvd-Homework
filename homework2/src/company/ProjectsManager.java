@@ -48,17 +48,8 @@ public final class ProjectsManager implements IDevelop {
     }
 
     public void addProject(Project project) {
-        //        if (developers.size() < appDetails.get(application.getClass()).getNumberOfDevelopers()
-        //                || productOwners.isEmpty()
-        //                || scrumMasters.isEmpty()) {
-        //            // TODO: Throw exception
-        //            System.out.println("No workers available.");
-        //            System.exit(1);
-        //        } else {
         // Create team based on the application needs
         this.projects.add(project);
-        //        }
-        //        return null;
     }
 
     public Team removeProject(Project project) {
