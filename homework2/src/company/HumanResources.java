@@ -1,11 +1,12 @@
 package company;
 
+import exceptions.NoWorkersAvailableException;
 import people.Worker;
 
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class HumanResources {
+public final class HumanResources {
     private final HashMap<Class<? extends Worker>, Integer> baseSalaries = new HashMap<>();
     private final HashMap<Class<? extends Worker>, HashSet<Worker>> workers = new HashMap<>();
 
@@ -23,15 +24,14 @@ public class HumanResources {
         workers.put(workerClass, workersSet);
     }
 
-    public Worker getWorker(Class<? extends Worker> workerClass) {
+    public Worker getWorker(Class<? extends Worker> workerClass) throws NoWorkersAvailableException {
         if (workers.get(workerClass).isEmpty()) {
-            // TODO: Throw exception
-            System.out.println("No workers available.");
-            System.exit(1);
+            throw new NoWorkersAvailableException("No workers available.");
         } else {
-            return workers.get(workerClass).iterator().next();
+            Worker worker = workers.get(workerClass).iterator().next();
+            workers.get(workerClass).remove(worker);
+            return worker;
         }
-        return null;
     }
 
     public int getSalary(Worker worker) {

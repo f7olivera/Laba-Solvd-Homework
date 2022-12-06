@@ -1,8 +1,6 @@
 package applications;
 
-import interfaces.IDeploy;
-
-public class MobileApp extends Application {
+public final class MobileApp extends Application {
     public final static String ENVIRONMENTS = "iOS,android";
 
     public MobileApp(AppDetails appDetails) {

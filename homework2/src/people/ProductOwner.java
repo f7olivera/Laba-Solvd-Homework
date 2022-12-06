@@ -1,6 +1,6 @@
 package people;
 
-public class ProductOwner extends Worker {
+public final class ProductOwner extends Worker {
     public ProductOwner(int employeeId) {
         super(employeeId);
     }

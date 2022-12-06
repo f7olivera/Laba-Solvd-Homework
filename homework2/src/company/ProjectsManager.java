@@ -1,41 +1,41 @@
 package company;
 
+import exceptions.InvalidProjectStateException;
+import exceptions.NoDevelopersException;
+import exceptions.ProjectNotFoundException;
 import interfaces.IDevelop;
 import people.*;
 
 import java.util.HashSet;
 
-public class ProjectsManager implements IDevelop {
+public final class ProjectsManager implements IDevelop {
     private final HashSet<Project> projects = new HashSet<>();
 
-    public void startProject(Project project) {
+    public void startProject(Project project) throws ProjectNotFoundException, NoDevelopersException {
         if (!projects.contains(project)) {
-            // TODO: Throw exception
-            System.out.println("This project does not belong to this company.");
-            System.exit(1);
+            throw new ProjectNotFoundException("This project does not belong to this company.");
         } else if (project.getTeam().getDevelopers().isEmpty()) {
-            // TODO: Throw exception
-            System.out.println("Project can't start with no developers.");
-            System.exit(1);
+            throw new NoDevelopersException("Project can't start with no developers.");
         } else {
             projects.remove(project);
             project.setState(ProjectState.STARTED);
-            project.getApplication().deploy();
             projects.add(project);
         }
     }
 
-    public void finishProject(Project project) {
+    public void finishProject(Project project) throws ProjectNotFoundException, InvalidProjectStateException {
         if (!projects.contains(project)) {
-            // TODO: Throw exception
-            System.out.println("This project does not belong to this company.");
-            System.exit(1);
+            throw new ProjectNotFoundException("This project does not belong to this company.");
         } else if (project.getState() != ProjectState.STARTED) {
-            System.out.println(project.getState() == ProjectState.UNBEGUN ? "This project has not started yet." : "This project is already finished.");
-            System.exit(1);
+            String errorMessage =
+                    project.getState() == ProjectState.NOT_STARTED ?
+                            "This project has not started yet." :
+                            "This project is already finished.";
+            throw new InvalidProjectStateException(errorMessage);
         } else {
             projects.remove(project);
             project.setState(ProjectState.FINISHED);
+            project.getApplication().deploy();
             projects.add(project);
         }
     }

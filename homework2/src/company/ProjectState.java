@@ -1,7 +1,7 @@
 package company;
 
 public enum ProjectState {
-    UNBEGUN,
+    NOT_STARTED,
     STARTED,
     FINISHED
 }

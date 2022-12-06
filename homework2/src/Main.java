@@ -2,10 +2,16 @@ import company.ITCompany;
 import company.Project;
 import company.Quotation;
 import applications.*;
+import exceptions.InsufficientBudgetException;
+import exceptions.NoDevelopersException;
+import exceptions.NoWorkersAvailableException;
+import exceptions.ProjectNotFoundException;
 import people.*;
-
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoWorkersAvailableException,
+            InsufficientBudgetException,
+                                                  ProjectNotFoundException,
+                                                  NoDevelopersException {
         ITCompany itCompany = initITCompany();
 
         // Requirements and quotation for a Website
@@ -41,7 +47,7 @@ public class Main {
 
         // Define app details
         itCompany.addApp(new Website(new AppDetails("name, domain and expected number of users", 10000, 0.25F, 4)));
-        itCompany.addApp(new MobileApp(new AppDetails("name, operating systems to be supported and expected number of users", 7500)));
+        itCompany.addApp(new MobileApp(new AppDetails("name, operating systems to be supported and expected number of users", 7500, 0.5F, 2)));
         itCompany.addApp(new DesktopApp(new AppDetails("name and platforms to be supported", 5000)));
 
         // Hire workers
@@ -59,7 +65,7 @@ public class Main {
     /**
      * Print requirements and quotation for an Application
      */
-    public static void printExample(ITCompany itCompany, Application app) {
+    public static void printExample(ITCompany itCompany, Application app) throws NoWorkersAvailableException {
         System.out.printf("/*********** %s ***********/\n%n", app.getClass().getSimpleName());
         String appRequirements = itCompany.getRequirements(app);
         System.out.println(String.format("Requirements to build a %s: ", app.getClass().getSimpleName()) + appRequirements + ".\n");

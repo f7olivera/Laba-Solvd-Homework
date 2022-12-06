@@ -1,6 +1,7 @@
 package company;
 
 import applications.*;
+import exceptions.*;
 import interfaces.IDevelop;
 import people.*;
 
@@ -20,7 +21,7 @@ public class ITCompany extends Company implements IDevelop {
         return baseApps.get(application.getClass()).getAppDetails().getRequirements();
     }
 
-    public Quotation getQuotation(Application application) {
+    public Quotation getQuotation(Application application) throws NoWorkersAvailableException {
         Team team = createTeam(application);
 
         int workersSalaries = humanResources.getSalary(team.getScrumMaster()) + humanResources.getSalary(team.getProductOwner());
@@ -32,16 +33,16 @@ public class ITCompany extends Company implements IDevelop {
         return new Quotation(baseApps.get(application.getClass()).getAppDetails().getBasePrice(), workersSalaries);
     }
 
-    public void startProject(Project project) {
+    public void startProject(Project project) throws ProjectNotFoundException, NoDevelopersException {
         projectsManager.startProject(project);
     }
 
-    public void finishProject(Project project) {
+    public void finishProject(Project project) throws ProjectNotFoundException, InvalidProjectStateException {
         disassembleTeam(project.getTeam());
         projectsManager.finishProject(project);
     }
 
-    public Team createTeam(Application application) {
+    public Team createTeam(Application application) throws NoWorkersAvailableException {
         AppDetails appDetails = baseApps.get(application.getClass()).getAppDetails();
 
         HashSet<Developer> devs = new HashSet<>();
@@ -54,11 +55,13 @@ public class ITCompany extends Company implements IDevelop {
     }
 
     public void disassembleTeam(Team team) {
-        // TODO: Add validation
-        for (Developer dev : team.getDevelopers())
-            humanResources.addWorker(dev);
-        humanResources.addWorker(team.getScrumMaster());
-        humanResources.addWorker(team.getProductOwner());
+//        if (!projectsManager.getProjects().contains(project))
+//            throw new ProjectNotFoundException("Project does not belong to this company.");
+//        else {
+            for (Developer dev : team.getDevelopers())
+                humanResources.addWorker(dev);
+            humanResources.addWorker(team.getScrumMaster());
+            humanResources.addWorker(team.getProductOwner());
     }
 
     /*
@@ -82,19 +85,16 @@ public class ITCompany extends Company implements IDevelop {
         humanResources.setBaseSalary(workerClass, salary);
     }
 
-    public Project addProject(Application application, Customer customer) {
+    public Project addProject(Application application, Customer customer) throws NoWorkersAvailableException, InsufficientBudgetException {
         int cost = getQuotation(application).getTotal();
         if (customer.getBudget() < cost) {
-            // TODO: Throw exception
-            System.out.println("Insufficient budget.");
-            System.exit(1);
+            throw new InsufficientBudgetException("Insufficient budget for customer with id " + customer.getId());
         } else {
             Project project = new Project(application, customer, createTeam(application));
             customer.spend(cost);
             projectsManager.addProject(project);
             return project;
         }
-        return null;
     }
 
     public void removeProject(Project project) {

@@ -4,7 +4,6 @@ import interfaces.IDeploy;
 
 public abstract class Application implements IDeploy {
     private String name;
-
     private AppDetails appDetails;
     private String supportedEnvironments;
     private int numberOfUsers = 1;
@@ -24,7 +23,7 @@ public abstract class Application implements IDeploy {
         this.numberOfUsers = numberOfUsers;
     }
 
-    public int getAppPrice() {
+    public final int getAppPrice() {
         return appDetails.getBasePrice() + (int) (numberOfUsers * appDetails.getPricePerUser());
     }
 

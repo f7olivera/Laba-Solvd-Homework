@@ -10,7 +10,7 @@ public class Project {
     private Application application;
     private Customer customer;
     private Team team;
-    private ProjectState projectState = ProjectState.UNBEGUN;
+    private ProjectState projectState = ProjectState.NOT_STARTED;
 
     public Project(Application application, Customer customer) {
         this.application = application;

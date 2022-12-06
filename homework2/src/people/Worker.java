@@ -18,12 +18,12 @@ public class Worker extends Person implements IWork {
     }
 
     @Override
-    public void startWork() {
+    public final void startWork() {
         System.out.println("Employee " + employeeId + " starts working.");
     }
 
     @Override
-    public void leaveWork() {
+    public final void leaveWork() {
         System.out.println("Employee " + employeeId + " stops working.");
     }
 

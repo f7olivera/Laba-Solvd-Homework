@@ -2,7 +2,7 @@ package people;
 
 import interfaces.IFinance;
 
-public class Customer extends Person implements IFinance {
+public final class Customer extends Person implements IFinance {
     private int budget;
 
     public Customer() {
@@ -20,13 +20,13 @@ public class Customer extends Person implements IFinance {
     }
 
     @Override
-    public void earn(int ammount) {
-        budget -= ammount;
+    public void earn(int amount) {
+        budget -= amount;
     }
 
     @Override
-    public void spend(int ammount) {
-        budget += ammount;
+    public void spend(int amount) {
+        budget += amount;
     }
 
     /*

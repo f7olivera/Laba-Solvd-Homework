@@ -9,15 +9,15 @@ public class Quotation {
         this.workersSalaries = workersSalaries;
     }
 
-    @Override
-    public String toString() {
-        return "Total: $" + (appPrice + workersSalaries) + "\n" +
-                "- Application price: $" + appPrice + "\n" +
-                "- Workers Salaries: $" + workersSalaries + "\n";
-    }
-
     public int getTotal() {
         return appPrice + workersSalaries;
+    }
+
+    @Override
+    public String toString() {
+        return "Total: $" + getTotal() + "\n" +
+                "- Application price: $" + appPrice + "\n" +
+                "- Workers Salaries: $" + workersSalaries + "\n";
     }
 
     /*

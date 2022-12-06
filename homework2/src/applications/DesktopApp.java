@@ -1,8 +1,6 @@
 package applications;
 
-import interfaces.IDeploy;
-
-public class DesktopApp extends Application {
+public final class DesktopApp extends Application {
     public final static String ENVIRONMENTS = "linux,mac,windows";
 
     public DesktopApp(AppDetails appDetails) {

@@ -1,8 +1,6 @@
 package applications;
 
-import interfaces.IDeploy;
-
-public class Website extends Application {
+public final class Website extends Application {
     public final static String ENVIRONMENTS = "chrome,edge,safari,firefox,opera,ie";
     private String domain;
 

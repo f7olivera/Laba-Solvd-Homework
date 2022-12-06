@@ -1,6 +1,6 @@
 package people;
 
-public class Developer extends Worker {
+public final class Developer extends Worker {
     private String role;
 
     public Developer(int employeeId) {
