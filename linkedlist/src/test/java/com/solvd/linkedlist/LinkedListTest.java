@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LinkedListTests {
+public class LinkedListTest {
     private LinkedList<Integer> list;
 
     @BeforeEach
@@ -31,9 +31,9 @@ public class LinkedListTests {
 
         assertFalse(list.isEmpty());
 
-        assertEquals(list.getFront(), 1);
+        assertTrue(notNullEquals(list.getFront(), 1));
         assertTrue(list.contains(2));
-        assertEquals(list.getBack(), 3);
+        assertTrue(notNullEquals(list.getBack(), 3));
     }
 
     @Test
@@ -49,9 +49,9 @@ public class LinkedListTests {
 
         assertFalse(list.isEmpty());
 
-        assertEquals(list.getFront(), 1);
+        assertTrue(notNullEquals(list.getFront(), 1));
         assertTrue(list.contains(2));
-        assertEquals(list.getBack(), 3);
+        assertTrue(notNullEquals(list.getBack(), 3));
     }
 
     @Test
@@ -93,5 +93,9 @@ public class LinkedListTests {
         list.remove(1);
         list.remove(1);
         assertEquals(list.size(), 2);
+    }
+
+    private boolean notNullEquals(Integer element, int actual) {
+        return element != null && element == actual;
     }
 }
