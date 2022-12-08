@@ -24,6 +24,7 @@ public class LinkedList<T> {
             head.setPrevious(newNode);
 
         head = newNode;
+        size++;
     }
 
     public void addBack(T element) {
@@ -34,6 +35,7 @@ public class LinkedList<T> {
             tail.setNext(newNode);
 
         tail = newNode;
+        size++;
     }
 
     public boolean contains(T element) {
@@ -45,6 +47,14 @@ public class LinkedList<T> {
         }
 
         return false;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public int size() {
+        return size;
     }
 
     /**
@@ -65,6 +75,7 @@ public class LinkedList<T> {
             previous = current;
             current = current.getNext();
         }
+        size--;
     }
 
     @Override
