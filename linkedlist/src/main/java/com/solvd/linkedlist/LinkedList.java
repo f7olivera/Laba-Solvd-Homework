@@ -1,6 +1,16 @@
+package com.solvd.linkedlist;
+
 public class LinkedList<T> {
     private Node<T> head = null;
     private Node<T> tail = null;
+    private int size = 0;
+
+    public LinkedList() {}
+
+    public LinkedList(T[] elements) {
+        for (T element : elements)
+            add(element);
+    }
 
     public void add(T element) {
         addBack(element);
