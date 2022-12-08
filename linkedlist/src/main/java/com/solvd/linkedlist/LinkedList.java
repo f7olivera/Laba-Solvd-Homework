@@ -86,6 +86,14 @@ public class LinkedList<T> {
         size--;
     }
 
+    public T getFront() {
+        return head != null ? head.getValue() : null;
+    }
+
+    public T getBack() {
+        return tail != null ? tail.getValue() : null;
+    }
+
     @Override
     public String toString() {
         String result = "[";
