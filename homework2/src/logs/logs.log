@@ -1,0 +1,27 @@
+10:52:24.612 [main] INFO  Main - Starting program
+10:52:24.626 [main] ERROR company.ITCompany - exceptions.NoWorkersAvailableException: No workers available.
+10:52:28.074 [main] INFO  Main - Starting program
+10:52:28.087 [main] ERROR company.ITCompany - exceptions.NoWorkersAvailableException: No workers available.
+10:53:39.915 [main] INFO  Main - Starting program
+10:53:39.929 [main] ERROR company.ITCompany - exceptions.NoWorkersAvailableException: No workers available.
+10:53:44.589 [main] INFO  Main - Starting program
+10:53:44.601 [main] ERROR company.ITCompany - exceptions.NoWorkersAvailableException: No workers available.
+10:54:13.647 [main] INFO  Main - Starting program
+10:54:13.661 [main] ERROR company.ITCompany - exceptions.NoWorkersAvailableException: No workers available.
+10:54:53.840 [main] INFO  Main - Starting program
+10:54:53.860 [main] ERROR company.ITCompany - exceptions.NoWorkersAvailableException: No workers available.
+10:56:17.252 [main] INFO  Main - Starting program
+10:56:17.266 [main] ERROR company.ITCompany - No workers available.
+11:00:23.166 [main] INFO  Main - Starting program
+11:00:23.189 [main] ERROR company.ITCompany - No workers available.
+11:00:50.951 [main] INFO  Main - Starting program
+11:00:50.964 [main] ERROR company.ITCompany - No workers available.
+11:04:03.548 [main] INFO  Main - Starting program
+11:04:03.569 [main] ERROR company.ITCompany - No workers available.
+11:04:25.753 [main] INFO  Main - Starting program
+11:04:25.767 [main] ERROR company.ITCompany - No workers available.
+11:45:31.032 [main] INFO  Main - Starting program
+11:46:20.966 [main] INFO  Main - Starting program
+11:46:20.978 [main] ERROR Main - This project has not started yet.
+11:47:20.520 [main] INFO  Main - Starting program
+11:47:20.534 [main] ERROR company.ITCompany - This project has not started yet.
