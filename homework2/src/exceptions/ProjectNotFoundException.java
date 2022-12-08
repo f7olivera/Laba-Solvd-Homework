@@ -1,6 +1,6 @@
 package exceptions;
 
-public class ProjectNotFoundException extends Exception {
+public class ProjectNotFoundException extends RuntimeException {
     public ProjectNotFoundException(String errorMessage) {
         super(errorMessage);
     }

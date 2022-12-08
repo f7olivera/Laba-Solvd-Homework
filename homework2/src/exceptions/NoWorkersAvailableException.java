@@ -1,6 +1,6 @@
 package exceptions;
 
-public class NoWorkersAvailableException extends Exception {
+public class NoWorkersAvailableException extends RuntimeException {
     public NoWorkersAvailableException(String errorMessage) {
         super(errorMessage);
     }
