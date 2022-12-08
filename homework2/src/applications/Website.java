@@ -20,7 +20,7 @@ public final class Website extends Application {
 
     @Override
     public void deploy() {
-        System.out.println("Deploying Website\n" + toString());
+        System.out.println("Deploying Website\n" + this);
     }
 
     @Override

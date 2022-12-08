@@ -17,7 +17,7 @@ public final class DesktopApp extends Application {
 
     @Override
     public void deploy() {
-        System.out.println("Deploying DesktopApp\n" + toString());
+        System.out.println("Deploying DesktopApp\n" + this);
     }
 
     @Override

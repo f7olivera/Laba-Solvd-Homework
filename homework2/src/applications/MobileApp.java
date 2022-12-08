@@ -22,7 +22,7 @@ public final class MobileApp extends Application {
 
     @Override
     public void deploy() {
-        System.out.println("Deploying MobileApp\n" + toString());
+        System.out.println("Deploying MobileApp\n" + this);
     }
 
     @Override
