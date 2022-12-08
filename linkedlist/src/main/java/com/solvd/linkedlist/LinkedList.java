@@ -63,16 +63,24 @@ public class LinkedList<T> {
      * @param element: element to be removed
      */
     public void remove(T element) {
-        Node<T> previous = head;
         Node<T> current = head;
 
         while (current != null) {
             if (current.getValue() == element) {
-                previous.setNext(current.getNext());
-                current.getNext().setPrevious(previous);
-                return;
+                // Update previous node or head
+                if (current.getPrevious() == null)
+                    head = current.getNext();
+                else
+                    current.getPrevious().setNext(current.getNext());
+
+                // Update next node or tail
+                if (current.getNext() == null)
+                    tail = current.getPrevious();
+                else
+                    current.getNext().setPrevious(current.getPrevious());
+
+                break;
             }
-            previous = current;
             current = current.getNext();
         }
         size--;
