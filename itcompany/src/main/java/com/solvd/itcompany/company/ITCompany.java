@@ -10,7 +10,6 @@ import com.solvd.linkedlist.LinkedList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ITCompany extends Company implements IDevelop {
@@ -34,11 +33,8 @@ public class ITCompany extends Company implements IDevelop {
         Team team = createTeam(application);
 
         int workersSalaries = humanResources.getSalary(team.getScrumMaster()) + humanResources.getSalary(team.getProductOwner());
-        for (int i = 0; i < team.getDevelopers().size(); i++) {
-            workersSalaries += humanResources.getSalary(team.getDevelopers().get());
-
-        }
-        for (Developer developer : team.getDevelopers())
+        for (int i = 0; i < team.getDevelopers().size(); i++)
+            workersSalaries += humanResources.getSalary(team.getDevelopers().get(i));
 
         disassembleTeam(team);
 
@@ -79,8 +75,9 @@ public class ITCompany extends Company implements IDevelop {
     }
 
     public void disassembleTeam(Team team) {
-        for (Developer dev : team.getDevelopers())
-            humanResources.addWorker(dev);
+        for (int i = 0; i < team.getDevelopers().size(); i++)
+            humanResources.addWorker(team.getDevelopers().get(i));
+
         humanResources.addWorker(team.getScrumMaster());
         humanResources.addWorker(team.getProductOwner());
     }
