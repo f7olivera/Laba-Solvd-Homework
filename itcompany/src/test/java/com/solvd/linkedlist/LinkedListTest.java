@@ -19,46 +19,61 @@ public class LinkedListTest {
     }
 
     @Test
-    void addBack() {
-        list.addBack(1);
+    void add() {
+        list.add(0, 1);
         assertTrue(list.contains(1));
+        assertTrue(notNullEquals(list.get(0), 1));
 
-        list.addBack(2);
+        list.add(0, 2);
         assertTrue(list.contains(2));
+        assertTrue(notNullEquals(list.get(0), 2));
 
-        list.addBack(3);
-        assertTrue(list.contains(3));
-
-        assertFalse(list.isEmpty());
-
-        assertTrue(notNullEquals(list.getFront(), 1));
-        assertTrue(list.contains(2));
-        assertTrue(notNullEquals(list.getBack(), 3));
+        list.add(2, 5);
+        assertTrue(list.contains(5));
+        assertTrue(notNullEquals(list.get(2), 5));
     }
 
     @Test
-    void addFront() {
-        list.addFront(3);
-        assertTrue(list.contains(3));
+    void addLast() {
+        list.addLast(1);
+        assertTrue(list.contains(1));
 
-        list.addFront(2);
+        list.addLast(2);
         assertTrue(list.contains(2));
 
-        list.addFront(1);
+        list.addLast(3);
+        assertTrue(list.contains(3));
+
+        assertFalse(list.isEmpty());
+
+        assertTrue(notNullEquals(list.getFirst(), 1));
+        assertTrue(list.contains(2));
+        assertTrue(notNullEquals(list.getLast(), 3));
+    }
+
+    @Test
+    void addFirst() {
+        list.addFirst(3);
+        assertTrue(list.contains(3));
+
+        list.addFirst(2);
+        assertTrue(list.contains(2));
+
+        list.addFirst(1);
         assertTrue(list.contains(1));
 
         assertFalse(list.isEmpty());
 
-        assertTrue(notNullEquals(list.getFront(), 1));
+        assertTrue(notNullEquals(list.getFirst(), 1));
         assertTrue(notNullEquals(list.get(1), 2));
-        assertTrue(notNullEquals(list.getBack(), 3));
+        assertTrue(notNullEquals(list.getLast(), 3));
     }
 
     @Test
     void get() {
-        list.addBack(1);
-        list.addBack(2);
-        list.addBack(3);
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
 
         assertTrue(notNullEquals(list.get(0), 1));
         assertTrue(notNullEquals(list.get(1), 2));
@@ -92,12 +107,12 @@ public class LinkedListTest {
     @Test
     void size() {
         assertEquals(list.size(), 0);
-        list.addBack(1);
+        list.addLast(1);
         assertEquals(list.size(), 1);
 
-        list.addBack(1);
-        list.addBack(2);
-        list.addBack(3);
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
 
         assertEquals(list.size(), 4);
 

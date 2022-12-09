@@ -5,18 +5,63 @@ public class LinkedList<T> {
     private Node<T> tail = null;
     private int size = 0;
 
-    public LinkedList() {}
+    public LinkedList() {
+    }
 
     public LinkedList(T[] elements) {
         for (T element : elements)
             add(element);
     }
 
+    /**
+     * Appends the specified element to the end of the list.
+     *
+     * @param element: element to be added.
+     */
     public void add(T element) {
-        addBack(element);
+        addLast(element);
     }
 
-    public void addFront(T element) {
+    /**
+     * Inserts the specified element at the specified position in the list.
+     *
+     * @param index: position where the element will be placed.
+     * @param element: element to be added.
+     */
+    public void add(int index, T element) {
+        if (size < index || index < 0)
+            throw new IndexOutOfBoundsException();
+
+        Node<T> current = head;
+        for (int j = 0; j < index; j++)
+            current = current.getNext();
+
+        Node<T> newNode = new Node<>(element, null, null);
+
+        if (isEmpty()) {
+            head = newNode;
+            tail = newNode;
+        } else if (index == 0) {
+            head = newNode;
+            newNode.setNext(current);
+            current.setPrevious(newNode);
+        } else if (index == size) {
+            newNode.setPrevious(tail.getPrevious());
+            tail.setNext(newNode);
+        } else {
+            newNode.setNext(current);
+            newNode.setPrevious(current.getPrevious());
+            current.setPrevious(newNode);
+        }
+        size++;
+    }
+
+    /**
+     * Appends the specified element to the end of the list.
+     *
+     * @param element: element to be added.
+     */
+    public void addFirst(T element) {
         Node<T> newNode = new Node<>(element, null, head);
         if (head == null)
             tail = newNode;
@@ -27,7 +72,12 @@ public class LinkedList<T> {
         size++;
     }
 
-    public void addBack(T element) {
+    /**
+     * Inserts the specified element at the beginning of the list.
+     *
+     * @param element: element to be added.
+     */
+    public void addLast(T element) {
         Node<T> newNode = new Node<>(element, tail, null);
         if (head == null)
             head = newNode;
@@ -36,25 +86,6 @@ public class LinkedList<T> {
 
         tail = newNode;
         size++;
-    }
-
-    public boolean contains(T element) {
-        Node<T> current = head;
-        while (current != null) {
-            if (current.getValue() == element)
-                return true;
-            current = current.getNext();
-        }
-
-        return false;
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    public int size() {
-        return size;
     }
 
     /**
@@ -66,7 +97,7 @@ public class LinkedList<T> {
         Node<T> current = head;
 
         while (current != null) {
-            if (current.getValue() == element) {
+            if (current.getValue().equals(element)) {
                 // Update previous node or head
                 if (current.getPrevious() == null)
                     head = current.getNext();
@@ -86,19 +117,65 @@ public class LinkedList<T> {
         size--;
     }
 
-    public T get(int i) {
+    /**
+     * Returns true if the element exists in the list.
+     *
+     * @param element: element to search.
+     */
+    public boolean contains(T element) {
         Node<T> current = head;
-        for (int j = 0; j < i; j++)
+        while (current != null) {
+            if (current.getValue().equals(element))
+                return true;
+            current = current.getNext();
+        }
+
+        return false;
+    }
+
+    /**
+     * Returns true if the list is empty.
+     *
+     */
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    /**
+     * Returns the size of the list.
+     *
+     */
+    public int size() {
+        return size;
+    }
+
+    /**
+     * Returns the element at the specified position.
+     *
+     * @param index: position index.
+     */
+    public T get(int index) {
+        if (!(0 <= index && index < size))
+            throw new IndexOutOfBoundsException();
+
+        Node<T> current = head;
+        for (int j = 0; j < index; j++)
             current = current.getNext();
 
         return current.getValue();
     }
 
-    public T getFront() {
+    /**
+     * Returns the first element of the list.
+     */
+    public T getFirst() {
         return head != null ? head.getValue() : null;
     }
 
-    public T getBack() {
+    /**
+     * Returns the last element of the list.
+     */
+    public T getLast() {
         return tail != null ? tail.getValue() : null;
     }
 
