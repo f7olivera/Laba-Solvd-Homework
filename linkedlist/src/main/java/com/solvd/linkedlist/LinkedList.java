@@ -86,6 +86,14 @@ public class LinkedList<T> {
         size--;
     }
 
+    public T get(int i) {
+        Node<T> current = head;
+        for (int j = 0; j < i; j++)
+            current = current.getNext();
+
+        return current.getValue();
+    }
+
     public T getFront() {
         return head != null ? head.getValue() : null;
     }

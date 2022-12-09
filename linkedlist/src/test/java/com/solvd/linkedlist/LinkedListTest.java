@@ -50,8 +50,19 @@ public class LinkedListTest {
         assertFalse(list.isEmpty());
 
         assertTrue(notNullEquals(list.getFront(), 1));
-        assertTrue(list.contains(2));
+        assertTrue(notNullEquals(list.get(1), 2));
         assertTrue(notNullEquals(list.getBack(), 3));
+    }
+
+    @Test
+    void get() {
+        list.addBack(1);
+        list.addBack(2);
+        list.addBack(3);
+
+        assertTrue(notNullEquals(list.get(0), 1));
+        assertTrue(notNullEquals(list.get(1), 2));
+        assertTrue(notNullEquals(list.get(2), 3));
     }
 
     @Test
