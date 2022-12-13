@@ -27,7 +27,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return String.format("Full name: %s %s\n", firstName, lastName) +
+        return String.format("Full name: \n", getFullName()) +
                 String.format("Age: %d\n", age) +
                 String.format("ID: %d\n", id);
     }
@@ -54,7 +54,7 @@ public class Person {
     }
 
     public String getFullName() {
-        return this.firstName + " " + this.lastName;
+        return firstName != null ? firstName : "" + " " + (lastName != null ? lastName : "");
     }
 
     void setFirstName(String firstName) {
