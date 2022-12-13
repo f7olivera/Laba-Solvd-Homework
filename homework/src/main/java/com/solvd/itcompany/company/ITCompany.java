@@ -76,8 +76,8 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
     }
 
     public void disassembleTeam(Team team) {
-        for (int i = 0; i < team.getDevelopers().size(); i++)
-            humanResources.addWorker(team.getDevelopers().get(i));
+        for (Developer dev : team.getDevelopers())
+            humanResources.addWorker(dev);
 
         humanResources.addWorker(team.getScrumMaster());
         humanResources.addWorker(team.getProductOwner());
