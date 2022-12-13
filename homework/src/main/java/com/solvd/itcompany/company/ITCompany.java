@@ -3,6 +3,7 @@ package com.solvd.itcompany.company;
 import com.solvd.itcompany.applications.AppDetails;
 import com.solvd.itcompany.applications.Application;
 import com.solvd.itcompany.exceptions.*;
+import com.solvd.itcompany.interfaces.IEmploy;
 import com.solvd.itcompany.people.*;
 import com.solvd.itcompany.interfaces.IDevelop;
 
@@ -12,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 
-public class ITCompany extends Company implements IDevelop {
+public class ITCompany extends Company implements IDevelop, IEmploy {
     private final HashMap<Class<? extends Application>, Application> baseApps = new HashMap<>();
     private final HumanResources humanResources = new HumanResources();
     private final ProjectsManager projectsManager = new ProjectsManager();
