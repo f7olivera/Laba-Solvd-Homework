@@ -13,6 +13,7 @@
         <RollingFile name="file"
                      fileName="${filename}/logs.log"
                      filePattern="${filename}/logs-%d{HH}.log">
+            <append>false</append>
             <PatternLayout>
                 <pattern>%d{HH:mm:ss.SSS} [%t] %-5level%logger{36} - %msg%n</pattern>
             </PatternLayout>
