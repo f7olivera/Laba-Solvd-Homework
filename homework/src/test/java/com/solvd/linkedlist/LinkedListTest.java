@@ -3,6 +3,8 @@ package com.solvd.linkedlist;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LinkedListTest {
@@ -119,6 +121,21 @@ public class LinkedListTest {
         list.remove(1);
         list.remove(1);
         assertEquals(list.size(), 2);
+    }
+
+    @Test
+    void iterator() {
+        list = new LinkedList<>(new Integer[]{1,2,3,4});
+
+        Iterator<Integer> iterator = list.iterator();
+        assertTrue(iterator.hasNext());
+
+        assertEquals((int) iterator.next(), 1);
+        assertEquals((int) iterator.next(), 2);
+        assertEquals((int) iterator.next(), 3);
+        assertEquals((int) iterator.next(), 4);
+
+        assertFalse(iterator.hasNext());
     }
 
     public static boolean notNullEquals(Integer element, int actual) {

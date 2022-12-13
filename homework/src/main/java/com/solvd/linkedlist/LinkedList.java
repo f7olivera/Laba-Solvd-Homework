@@ -1,7 +1,9 @@
 package com.solvd.linkedlist;
 
-public class LinkedList<T> {
-    private Node<T> head = null;
+import java.util.Iterator;
+
+public class LinkedList<T> implements Iterable<T> {
+    protected Node<T> head = null;
     private Node<T> tail = null;
     private int size = 0;
 
@@ -191,5 +193,29 @@ public class LinkedList<T> {
         result += "]";
 
         return result;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T> () {
+            private Node<T> current = head;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                T currentValue = current.getValue();
+                current = current.getNext();
+                return currentValue;
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException("no changes allowed");
+            }
+        };
     }
 }
