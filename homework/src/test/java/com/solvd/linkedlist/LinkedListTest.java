@@ -121,7 +121,7 @@ public class LinkedListTest {
         assertEquals(list.size(), 2);
     }
 
-    private boolean notNullEquals(Integer element, int actual) {
+    public static boolean notNullEquals(Integer element, int actual) {
         return element != null && element == actual;
     }
 }
