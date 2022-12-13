@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
     <Properties>
-        <Property name="filename">./src/main/java/com/solvd/itcompany/logs/</Property>
+        <Property name="filename">./logs/</Property>
     </Properties>
 
     <Appenders>
