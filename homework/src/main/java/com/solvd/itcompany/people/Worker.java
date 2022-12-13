@@ -1,7 +1,5 @@
 package com.solvd.itcompany.people;
 
-
-import com.solvd.itcompany.company.ITCompany;
 import com.solvd.itcompany.interfaces.IWork;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

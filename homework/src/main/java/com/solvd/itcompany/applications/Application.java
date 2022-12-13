@@ -1,7 +1,6 @@
 package com.solvd.itcompany.applications;
 
 import com.solvd.itcompany.interfaces.IDeploy;
-import com.solvd.itcompany.people.Worker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
