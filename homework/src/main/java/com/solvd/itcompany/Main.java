@@ -35,24 +35,18 @@ public class Main {
         Customer customer;
 
         // Read customer data using try-with-resources
-        try (Scanner scanner = new Scanner(System.in)) {
-            LOGGER.info("Reading customer data.");
+        try (Scanner scanner = new Scanner("src/main/resources/customer-data.txt")) {
 
-            System.out.print("Name: ");
-            String firstName = scanner.nextLine();
-
-            System.out.print("ID: ");
+            String name = scanner.nextLine();
             int id = scanner.nextInt();
-
-            System.out.print("Budget: ");
             int budget = scanner.nextInt();
 
-            customer = new Customer(firstName, id, budget);
+            customer = new Customer(name, id, budget);
         }
+
         Project firefoxProject = itCompany.addProject(firefox, customer);
         itCompany.finishProject(firefoxProject);
         itCompany.startProject(firefoxProject);
-        // itCompany.addProject(new MobileApp("WhatsApp", 1000, "android"), customer);
 
         LOGGER.info("Firefox project example:\n" + firefoxProject);
     }
