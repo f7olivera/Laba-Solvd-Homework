@@ -1,9 +1,14 @@
 package com.solvd.itcompany;
 
-import com.solvd.itcompany.company.*;
 import com.solvd.itcompany.applications.*;
+import com.solvd.itcompany.company.ITCompany;
+import com.solvd.itcompany.company.Project;
+import com.solvd.itcompany.company.Quotation;
 import com.solvd.itcompany.exceptions.*;
-import com.solvd.itcompany.people.*;
+import com.solvd.itcompany.people.Customer;
+import com.solvd.itcompany.people.Developer;
+import com.solvd.itcompany.people.ProductOwner;
+import com.solvd.itcompany.people.ScrumMaster;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
