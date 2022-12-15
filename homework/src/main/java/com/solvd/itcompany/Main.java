@@ -12,13 +12,16 @@ import com.solvd.itcompany.people.ScrumMaster;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
     private final static Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args)
-            throws NoWorkersAvailableException, InsufficientBudgetException, ProjectNotFoundException, NoDevelopersException, NegativeAmountException {
+            throws NoWorkersAvailableException, InsufficientBudgetException, ProjectNotFoundException,
+            NoDevelopersException, NegativeAmountException, FileNotFoundException {
         LOGGER.info("Starting program");
         ITCompany itCompany = initITCompany();
 
@@ -35,8 +38,7 @@ public class Main {
         Customer customer;
 
         // Read customer data using try-with-resources
-        try (Scanner scanner = new Scanner("src/main/resources/customer-data.txt")) {
-
+        try (Scanner scanner = new Scanner(new File("src/main/resources/customer-data.txt"))) {
             String name = scanner.nextLine();
             int id = scanner.nextInt();
             int budget = scanner.nextInt();
