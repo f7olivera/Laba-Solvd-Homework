@@ -11,11 +11,11 @@ public class Main {
         // FilesManager.createRandomFiles(directoryPath, 5);
 
         // Get last modified file
-        System.out.println("Last modified file in " + directoryPath + ":");
+        System.out.print("Last modified file in " + directoryPath + ":");
         System.out.println(SecondTask.getLastModified(directoryPath).getName());
 
         // SecondTask.renameFile("src/main/resources/random/original.txt", "new.txt");
 
-        System.out.println(SecondTask.rotateWord("Ias don't know Ias", "asddasasd", 1));
+        System.out.println(SecondTask.rotateWord("This is some random text (text).", "text", 1));
     }
 }
