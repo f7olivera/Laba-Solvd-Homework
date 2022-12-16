@@ -57,7 +57,7 @@ public final class SecondTask {
     /**
      * Checks if the given string contains any of the strings in the list.
      */
-    public static boolean containsAny(String text, ArrayList<String> strings) {
+    public static boolean containsAny(String text, String[] strings) {
         for (String string : strings)
             if (StringUtils.contains(text, string))
                 return true;
