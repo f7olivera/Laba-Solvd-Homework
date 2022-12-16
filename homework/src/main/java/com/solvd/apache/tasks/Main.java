@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        WordCounter.countWords3("src/main/resources/article.txt", "src/main/resources/article-count.txt");
+        WordCounter.countWords("src/main/resources/article.txt", "src/main/resources/article-count.txt");
 
         /*
          * SecondTask.createRandomFiles() example
