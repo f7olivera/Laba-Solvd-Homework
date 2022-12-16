@@ -1,147 +1,89 @@
-execution: 3
-by: 6
-elephant: 5
-execution: 3
-by: 6
-elephant: 5
-was: 4
-a: 66
-method: 1
-of: 4
-capital: 1
-punishment: 1
-in: 11
-south: 2
-and: 7
-southeast: 1
-asia: 4
-particularly: 2
-in: 11
-india: 1
-where: 1
-asian: 1
-elephants: 3
-were: 3
-used: 3
-to: 9
-crush: 1
-dismember: 1
-or: 6
-torture: 2
-captives: 2
-in: 11
-public: 1
-executions: 1
-the: 11
-animals: 2
-were: 3
-trained: 1
-to: 9
-kill: 1
-victims: 1
-immediately: 1
-or: 6
-to: 9
-torture: 2
-them: 1
-slowly: 1
-over: 2
-a: 66
-prolonged: 1
-period: 1
-most: 1
-commonly: 1
-employed: 1
-by: 6
-royalty: 1
-the: 11
-elephants: 3
-were: 3
-used: 3
-to: 9
-signify: 1
-both: 1
-the: 11
-ruler: 1
-power: 3
-of: 4
-life: 2
-and: 7
-death: 1
-over: 2
-his: 2
-subjects: 1
-and: 7
-his: 2
-ability: 1
-to: 9
-control: 1
-wild: 1
-animals: 2
-the: 11
-sight: 1
-of: 4
-elephants: 3
-executing: 1
-captives: 2
-was: 4
-recorded: 1
-in: 11
-contemporary: 1
-journals: 1
-and: 7
-accounts: 1
-of: 4
-life: 2
-in: 11
-asia: 4
-by: 6
-european: 2
-travellers: 1
-the: 11
-practice: 2
-was: 4
-eventually: 1
-suppressed: 1
-by: 6
-the: 11
-european: 2
-colonial: 1
-powers: 2
-that: 1
-colonised: 1
-the: 11
-region: 1
-in: 11
-the: 11
-18th: 1
-and: 7
-19th: 1
-centuries: 1
-while: 1
-primarily: 1
-confined: 1
-to: 9
-asia: 4
-the: 11
-practice: 2
-was: 4
-occasionally: 1
-used: 3
-by: 6
-western: 1
-and: 7
-african: 1
-powers: 2
-such: 1
-as: 11
-ancient: 1
-rome: 1
-and: 7
-carthage: 1
-particularly: 2
-to: 9
-deal: 1
-with: 1
-mutinous: 1
-soldiers: 1
+{capital=1,
+practice=2,
+used=3,
+royalty=1,
+ruler=1,
+executing=1,
+19th=1,
+while=1,
+employed=1,
+that=1,
+crush=1,
+his=2,
+colonial=1,
+sight=1,
+animals=2,
+victims=1,
+rome=1,
+centuries=1,
+period=1,
+method=1,
+commonly=1,
+travellers=1,
+in=6,
+european=2,
+them=1,
+slowly=1,
+prolonged=1,
+journals=1,
+ancient=1,
+both=1,
+most=1,
+as=1,
+contemporary=1,
+were=3,
+mutinous=1,
+western=1,
+region=1,
+elephant=2,
+southeast=1,
+deal=1,
+confined=1,
+trained=1,
+death=1,
+south=1,
+soldiers=1,
+eventually=1,
+immediately=1,
+colonised=1,
+india=1,
+18th=1,
+life=2,
+primarily=1,
+public=1,
+and=7,
+by=6,
+of=4,
+elephants=3,
+occasionally=1,
+where=1,
+power=1,
+ability=1,
+suppressed=1,
+carthage=1,
+over=2,
+execution=2,
+a=2,
+particularly=2,
+or=2,
+asia=3,
+signify=1,
+subjects=1,
+was=4,
+asian=1,
+control=1,
+kill=1,
+recorded=1,
+dismember=1,
+the=9,
+such=1,
+with=1,
+punishment=1,
+torture=2,
+executions=1,
+african=1,
+to=7,
+accounts=1,
+powers=2,
+wild=1,
+captives=2}
