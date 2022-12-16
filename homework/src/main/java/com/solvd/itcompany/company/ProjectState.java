@@ -1,6 +1,6 @@
 package com.solvd.itcompany.company;
 
-public enum ProjectState {
+enum ProjectState {
     NOT_STARTED,
     STARTED,
     FINISHED
