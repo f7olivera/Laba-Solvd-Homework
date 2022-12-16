@@ -85,7 +85,7 @@ public class Main {
      * Print requirements and quotation for an Application
      */
     public static void logExample(ITCompany itCompany, Application app) throws NoWorkersAvailableException {
-        LOGGER.info(String.format("Logging %s example", app.getClass().getSimpleName()));
+        LOGGER.info(String.format("Logging %s example.", app.getClass().getSimpleName()));
         String appRequirements = itCompany.getRequirements(app);
         LOGGER.info(String.format("Requirements to build a %s: ", app.getClass().getSimpleName()) + appRequirements + ".");
 
