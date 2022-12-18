@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 import static java.nio.charset.Charset.defaultCharset;
 
-public abstract class WordCounter {
+public final class WordCounter {
     public static void countWords(String inputPath, String outputPath) throws IOException {
         HashMap<String, Integer> wordCounter = new HashMap<>();
 
