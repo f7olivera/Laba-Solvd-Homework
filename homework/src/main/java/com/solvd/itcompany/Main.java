@@ -2,6 +2,7 @@ package com.solvd.itcompany;
 
 import com.solvd.itcompany.applications.*;
 import com.solvd.itcompany.applications.Environment;
+import com.solvd.itcompany.company.CompanyType;
 import com.solvd.itcompany.company.ITCompany;
 import com.solvd.itcompany.company.Project;
 import com.solvd.itcompany.company.Quotation;
@@ -59,7 +60,7 @@ public class Main {
      * Create an instance of ITCompany
      */
     public static ITCompany initITCompany() {
-        ITCompany itCompany = new ITCompany("Solvd");
+        ITCompany itCompany = new ITCompany("Solvd", CompanyType.CORPORATION);
 
         // Define base salaries for every worker
         itCompany.setBaseSalary(Developer.class, 1000);

@@ -19,9 +19,9 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
     private final ProjectsManager projectsManager = new ProjectsManager();
     private final static Logger LOGGER = LogManager.getLogger(ITCompany.class);
 
-    public ITCompany(String name) {
-        super(name);
-        LOGGER.info("Creating IT Company " + name + ".");
+    public ITCompany(String name, CompanyType companyType) {
+        super(name, companyType);
+        LOGGER.info("Creating IT Company " + name + " (" + companyType.toString().toLowerCase() + ").");
     }
 
     public String getRequirements(Application application) {

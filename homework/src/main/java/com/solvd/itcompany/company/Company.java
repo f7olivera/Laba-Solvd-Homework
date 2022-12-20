@@ -2,9 +2,11 @@ package com.solvd.itcompany.company;
 
 public abstract class Company {
     private String name;
+    private CompanyType companyType;
 
-    public Company(String name) {
+    public Company(String name, CompanyType companyType) {
         this.name = name;
+        this.companyType = companyType;
     }
 
     /*
@@ -16,5 +18,13 @@ public abstract class Company {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setCompanyType(CompanyType companyType) {
+        this.companyType = companyType;
+    }
+
+    public CompanyType getCompanyType() {
+        return this.companyType;
     }
 }
