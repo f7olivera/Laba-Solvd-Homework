@@ -32,7 +32,9 @@ public class Main {
         logExample(itCompany, new Website("Facebook", 50000, "www.facebook.com"));
 
         // Requirements and quotation for a MobileApp
-        logExample(itCompany, new MobileApp("WhatsApp", 1000, EnumSet.of(Environment.ANDROID)));
+        Environment android = Environment.ANDROID;
+        android.setMinimumSupportedVersion("9.0");
+        logExample(itCompany, new MobileApp("WhatsApp", 1000, EnumSet.of(android)));
 
         // Requirements and quotation for a DesktopApp
         DesktopApp firefox = new DesktopApp("Firefox", EnumSet.of(Environment.LINUX));

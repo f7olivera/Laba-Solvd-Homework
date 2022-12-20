@@ -31,7 +31,6 @@ public enum Environment {
         return environments.toString().replaceAll("^.|.$", "");
     }
 
-
     public Class<? extends Application> getType() {
         return type;
     }
