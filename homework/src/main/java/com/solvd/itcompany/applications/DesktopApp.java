@@ -1,17 +1,20 @@
 package com.solvd.itcompany.applications;
 
-public final class DesktopApp extends Application {
-    public final static String ENVIRONMENTS = "linux,mac,windows";
+import java.util.EnumSet;
+import java.util.Set;
 
+import static com.solvd.itcompany.applications.Environment.*;
+
+public final class DesktopApp extends Application {
     public DesktopApp(AppDetails appDetails) {
         super(appDetails);
     }
 
     public DesktopApp(String name) {
-        super(name, ENVIRONMENTS);
+        super(name, EnumSet.of(LINUX, MACOS, WINDOWS));
     }
 
-    public DesktopApp(String name, String supportedEnvironments) {
+    public DesktopApp(String name, Set<Environment> supportedEnvironments) {
         super(name, supportedEnvironments);
     }
 
@@ -24,6 +27,6 @@ public final class DesktopApp extends Application {
     public String toString() {
         return "- Application type: " + this.getClass().getSimpleName() + "\n" +
                 "- Name: " + this.getName() + "\n" +
-                "- Platforms: " + this.getSupportedEnvironments();
+                "- Platforms: " + Environment.toString(this.getSupportedEnvironments());
     }
 }

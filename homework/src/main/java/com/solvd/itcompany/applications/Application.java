@@ -4,10 +4,12 @@ import com.solvd.itcompany.interfaces.IDeploy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Set;
+
 public abstract class Application implements IDeploy {
     private String name;
     private AppDetails appDetails;
-    private String supportedEnvironments;
+    private Set<Environment> supportedEnvironments;
     private int numberOfUsers = 1;
     protected final static Logger LOGGER = LogManager.getLogger(Application.class);
 
@@ -15,12 +17,12 @@ public abstract class Application implements IDeploy {
         this.appDetails = appDetails;
     }
 
-    public Application(String name, String supportedEnvironments) {
+    public Application(String name, Set<Environment> supportedEnvironments) {
         this.name = name;
         this.supportedEnvironments = supportedEnvironments;
     }
 
-    public Application(String name, String supportedEnvironments, int numberOfUsers) {
+    public Application(String name, Set<Environment> supportedEnvironments, int numberOfUsers) {
         this.name = name;
         this.supportedEnvironments = supportedEnvironments;
         this.numberOfUsers = numberOfUsers;
@@ -41,11 +43,11 @@ public abstract class Application implements IDeploy {
         this.name = name;
     }
 
-    public String getSupportedEnvironments() {
+    public Set<Environment> getSupportedEnvironments() {
         return this.supportedEnvironments;
     }
 
-    void setSupportedEnvironments(String supportedEnvironments) {
+    void setSupportedEnvironments(Set<Environment> supportedEnvironments) {
         this.supportedEnvironments = supportedEnvironments;
     }
 

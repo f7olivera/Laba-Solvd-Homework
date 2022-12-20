@@ -1,6 +1,7 @@
 package com.solvd.itcompany;
 
 import com.solvd.itcompany.applications.*;
+import com.solvd.itcompany.applications.Environment;
 import com.solvd.itcompany.company.ITCompany;
 import com.solvd.itcompany.company.Project;
 import com.solvd.itcompany.company.Quotation;
@@ -14,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.EnumSet;
 import java.util.Scanner;
 
 public class Main {
@@ -29,10 +31,10 @@ public class Main {
         logExample(itCompany, new Website("Facebook", 50000, "www.facebook.com"));
 
         // Requirements and quotation for a MobileApp
-        logExample(itCompany, new MobileApp("WhatsApp", 1000, "android"));
+        logExample(itCompany, new MobileApp("WhatsApp", 1000, EnumSet.of(Environment.ANDROID)));
 
         // Requirements and quotation for a DesktopApp
-        DesktopApp firefox = new DesktopApp("Firefox", "linux");
+        DesktopApp firefox = new DesktopApp("Firefox", EnumSet.of(Environment.LINUX));
         logExample(itCompany, firefox);
 
         Customer customer;

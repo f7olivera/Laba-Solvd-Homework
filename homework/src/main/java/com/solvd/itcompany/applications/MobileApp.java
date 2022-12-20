@@ -1,22 +1,26 @@
 package com.solvd.itcompany.applications;
 
-public final class MobileApp extends Application {
-    public final static String ENVIRONMENTS = "iOS,android";
+import java.util.EnumSet;
+import java.util.Set;
 
+import static com.solvd.itcompany.applications.Environment.ANDROID;
+import static com.solvd.itcompany.applications.Environment.IOS;
+
+public final class MobileApp extends Application {
     public MobileApp(AppDetails appDetails) {
         super(appDetails);
     }
 
     public MobileApp(String name) {
         // Consider all operating systems by default
-        super(name, ENVIRONMENTS);
+        super(name, EnumSet.of(IOS, ANDROID));
     }
 
-    public MobileApp(String name, String supportedEnvironments) {
+    public MobileApp(String name, Set<Environment> supportedEnvironments) {
         super(name, supportedEnvironments);
     }
 
-    public MobileApp(String name, int numberOfUsers, String supportedEnvironments) {
+    public MobileApp(String name, int numberOfUsers, Set<Environment> supportedEnvironments) {
         super(name, supportedEnvironments, numberOfUsers);
     }
 
@@ -29,6 +33,6 @@ public final class MobileApp extends Application {
     public String toString() {
         return "- Application type: " + this.getClass().getSimpleName() + "\n" +
                 "- Name: " + this.getName() + "\n" +
-                "- Operating Systems: " + this.getSupportedEnvironments() + "\n";
+                "- Operating Systems: " + Environment.toString(this.getSupportedEnvironments());
     }
 }

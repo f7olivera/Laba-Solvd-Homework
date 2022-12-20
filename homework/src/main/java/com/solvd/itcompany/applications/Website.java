@@ -1,7 +1,11 @@
 package com.solvd.itcompany.applications;
 
+import java.util.EnumSet;
+import java.util.Set;
+
+import static com.solvd.itcompany.applications.Environment.*;
+
 public final class Website extends Application {
-    public final static String ENVIRONMENTS = "chrome,edge,safari,firefox,opera,ie";
     private String domain;
 
     public Website(AppDetails appDetails) {
@@ -9,11 +13,11 @@ public final class Website extends Application {
     }
 
     public Website(String name, int numberOfUsers, String domain) {
-        super(name, ENVIRONMENTS, numberOfUsers);
+        super(name, EnumSet.of(CHROME, EDGE, SAFARI, FIREFOX, OPERA, INTERNET_EXPLORER), numberOfUsers);
         this.domain = domain;
     }
 
-    public Website(String name, String supportedEnvironments, int numberOfUsers, String domain) {
+    public Website(String name, Set<Environment> supportedEnvironments, int numberOfUsers, String domain) {
         super(name, supportedEnvironments, numberOfUsers);
         this.domain = domain;
     }
@@ -28,7 +32,7 @@ public final class Website extends Application {
         return "- Application type: " + this.getClass().getSimpleName() + "\n" +
                 "- Name: " + this.getName() + "\n" +
                 "- Domain: " + this.getDomain() + "\n" +
-                "- Supported browsers: " + this.getSupportedEnvironments();
+                "- Supported browsers: " + Environment.toString(this.getSupportedEnvironments());
     }
 
     /*
