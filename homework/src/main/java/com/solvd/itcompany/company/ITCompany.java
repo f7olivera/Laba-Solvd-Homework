@@ -22,7 +22,7 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
 
     public ITCompany(String name, CompanyType companyType) {
         super(name, companyType);
-        LOGGER.info("Creating IT Company " + name + " (" + companyType.toString().toLowerCase() + ").");
+        LOGGER.info("Creating IT Company " + name + " (" + companyType + ").");
     }
 
     public String getRequirements(Application application) {
