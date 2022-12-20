@@ -1,16 +1,20 @@
 package com.solvd.itcompany.company;
 
+import com.solvd.enums.ProjectState;
 import com.solvd.itcompany.exceptions.InvalidProjectStateException;
 import com.solvd.itcompany.exceptions.NoDevelopersException;
 import com.solvd.itcompany.exceptions.ProjectNotFoundException;
 import com.solvd.itcompany.interfaces.IDevelop;
 import com.solvd.itcompany.people.Team;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
 
 public final class ProjectsManager implements IDevelop {
     private final HashSet<Project> projects = new HashSet<>();
     private final String UNRECOGNIZED_PROJECT_MESSAGE = "This project does not belong to this company.";
+    private final static Logger LOGGER = LogManager.getLogger(ProjectsManager.class);
 
     public void startProject(Project project) throws ProjectNotFoundException, NoDevelopersException, InvalidProjectStateException {
         if (!projects.contains(project)) {
@@ -23,6 +27,7 @@ public final class ProjectsManager implements IDevelop {
             projects.remove(project);
             project.setState(ProjectState.STARTED);
             projects.add(project);
+            LOGGER.info(project.getState());
         }
     }
 
@@ -45,6 +50,7 @@ public final class ProjectsManager implements IDevelop {
             project.setState(ProjectState.FINISHED);
             project.getApplication().deploy();
             projects.add(project);
+            LOGGER.info(project.getState());
         }
     }
 
