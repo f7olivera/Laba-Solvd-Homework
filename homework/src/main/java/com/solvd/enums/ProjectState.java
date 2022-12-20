@@ -14,13 +14,13 @@ public enum ProjectState {
     STARTED(Instant.now().getEpochSecond()) {
         @Override
         public String toString() {
-            return "Project started at " + getTimestamp() + "with priority " + getPriority() + ".";
+            return "Project started at " + formatDate() + " with priority " + getPriority() + ".";
         }
     },
     FINISHED(Instant.now().getEpochSecond(), -1) {
         @Override
         public String toString() {
-            return "Project finished at " + getTimestamp();
+            return "Project finished at " + formatDate() + ".";
         }
     };
 
@@ -37,6 +37,12 @@ public enum ProjectState {
     ProjectState(long timestamp, int priority) {
         this(timestamp);
         this.priority = priority;
+    }
+
+    public String formatDate() {
+        Date date = new Date(timestamp * 1000L);
+        SimpleDateFormat jdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+        return jdf.format(date) + " (UTC)";
     }
 
     public long getTimestamp() {
