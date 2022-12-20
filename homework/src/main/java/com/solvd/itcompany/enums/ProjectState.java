@@ -25,7 +25,7 @@ public enum ProjectState {
     };
 
     private long timestamp;
-    private int priority;
+    private int priority = -1;
 
     ProjectState() {
     }
