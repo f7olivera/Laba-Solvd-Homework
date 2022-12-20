@@ -1,9 +1,16 @@
-package com.solvd.itcompany.company;
+package com.solvd.enums;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.Date;
 
-enum ProjectState {
-    NOT_STARTED,
+public enum ProjectState {
+    NOT_STARTED {
+        @Override
+        public String toString() {
+            return "Project not started.";
+        }
+    },
     STARTED(Instant.now().getEpochSecond()) {
         @Override
         public String toString() {

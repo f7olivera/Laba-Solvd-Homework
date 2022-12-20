@@ -1,10 +1,12 @@
 package com.solvd.itcompany.applications;
 
+import com.solvd.enums.Environment;
+
 import java.util.EnumSet;
 import java.util.Set;
 
-import static com.solvd.itcompany.applications.Environment.ANDROID;
-import static com.solvd.itcompany.applications.Environment.IOS;
+import static com.solvd.enums.Environment.ANDROID;
+import static com.solvd.enums.Environment.IOS;
 
 public final class MobileApp extends Application {
     public MobileApp(AppDetails appDetails) {

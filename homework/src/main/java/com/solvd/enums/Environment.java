@@ -1,4 +1,9 @@
-package com.solvd.itcompany.applications;
+package com.solvd.enums;
+
+import com.solvd.itcompany.applications.Application;
+import com.solvd.itcompany.applications.DesktopApp;
+import com.solvd.itcompany.applications.MobileApp;
+import com.solvd.itcompany.applications.Website;
 
 import java.util.Set;
 

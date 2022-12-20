@@ -1,5 +1,6 @@
 package com.solvd.itcompany.company;
 
+import com.solvd.enums.CompanyType;
 import com.solvd.itcompany.applications.AppDetails;
 import com.solvd.itcompany.applications.Application;
 import com.solvd.itcompany.exceptions.*;

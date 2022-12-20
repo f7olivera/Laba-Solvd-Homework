@@ -1,9 +1,11 @@
 package com.solvd.itcompany.applications;
 
+import com.solvd.enums.Environment;
+
 import java.util.EnumSet;
 import java.util.Set;
 
-import static com.solvd.itcompany.applications.Environment.*;
+import static com.solvd.enums.Environment.*;
 
 public final class Website extends Application {
     private String domain;

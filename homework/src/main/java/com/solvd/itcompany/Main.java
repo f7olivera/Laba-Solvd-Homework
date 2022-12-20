@@ -1,8 +1,8 @@
 package com.solvd.itcompany;
 
 import com.solvd.itcompany.applications.*;
-import com.solvd.itcompany.applications.Environment;
-import com.solvd.itcompany.company.CompanyType;
+import com.solvd.enums.Environment;
+import com.solvd.enums.CompanyType;
 import com.solvd.itcompany.company.ITCompany;
 import com.solvd.itcompany.company.Project;
 import com.solvd.itcompany.company.Quotation;

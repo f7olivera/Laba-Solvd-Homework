@@ -1,5 +1,6 @@
 package com.solvd.itcompany.applications;
 
+import com.solvd.enums.Environment;
 import com.solvd.itcompany.interfaces.IDeploy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
