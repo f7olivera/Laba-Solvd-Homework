@@ -2,7 +2,7 @@ package com.solvd.itcompany.enums;
 
 public enum CompanyType {
     SOLE_PROPRIETORSHIP("SP"),
-    CORPORATION("Corp"),
+    CORPORATION("corp"),
     LIMITED_LIABILITY_COMPANY("LLC"),
     COOPERATIVE("co-op");
 
