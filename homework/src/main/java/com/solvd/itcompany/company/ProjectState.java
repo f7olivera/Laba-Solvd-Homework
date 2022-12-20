@@ -7,7 +7,7 @@ enum ProjectState {
     STARTED(Instant.now().getEpochSecond()) {
         @Override
         public String toString() {
-            return "Project started at " + getTimestamp();
+            return "Project started at " + getTimestamp() + "with priority " + getPriority() + ".";
         }
     },
     FINISHED(Instant.now().getEpochSecond(), -1) {
