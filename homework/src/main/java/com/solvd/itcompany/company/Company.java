@@ -1,6 +1,6 @@
 package com.solvd.itcompany.company;
 
-import com.solvd.enums.CompanyType;
+import com.solvd.itcompany.enums.CompanyType;
 
 public abstract class Company {
     private String name;

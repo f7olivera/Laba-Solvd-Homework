@@ -1,4 +1,4 @@
-package com.solvd.enums;
+package com.solvd.itcompany.enums;
 
 import com.solvd.itcompany.applications.Application;
 import com.solvd.itcompany.applications.DesktopApp;

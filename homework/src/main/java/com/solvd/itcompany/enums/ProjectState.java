@@ -1,4 +1,4 @@
-package com.solvd.enums;
+package com.solvd.itcompany.enums;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;

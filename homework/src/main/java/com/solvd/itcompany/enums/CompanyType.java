@@ -1,4 +1,4 @@
-package com.solvd.enums;
+package com.solvd.itcompany.enums;
 
 public enum CompanyType {
     SOLE_PROPRIETORSHIP,

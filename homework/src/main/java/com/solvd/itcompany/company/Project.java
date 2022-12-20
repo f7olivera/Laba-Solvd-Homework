@@ -1,6 +1,6 @@
 package com.solvd.itcompany.company;
 
-import com.solvd.enums.ProjectState;
+import com.solvd.itcompany.enums.ProjectState;
 import com.solvd.itcompany.applications.Application;
 import com.solvd.itcompany.people.Customer;
 import com.solvd.itcompany.people.Team;

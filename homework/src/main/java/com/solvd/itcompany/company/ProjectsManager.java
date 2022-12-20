@@ -1,6 +1,6 @@
 package com.solvd.itcompany.company;
 
-import com.solvd.enums.ProjectState;
+import com.solvd.itcompany.enums.ProjectState;
 import com.solvd.itcompany.exceptions.InvalidProjectStateException;
 import com.solvd.itcompany.exceptions.NoDevelopersException;
 import com.solvd.itcompany.exceptions.ProjectNotFoundException;
