@@ -44,7 +44,7 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
     }
 
     public void startProject(Project project) throws ProjectNotFoundException, NoDevelopersException {
-        LOGGER.info("Start project " + project.getApplication().getName() + " for " + project.getCustomer().getFullName() + ".");
+        LOGGER.info("Starting project " + project.getApplication().getName() + " for " + project.getCustomer().getFullName() + ".");
         try {
             projectsManager.startProject(project);
         } catch (InvalidProjectStateException e) {
@@ -53,7 +53,7 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
     }
 
     public void finishProject(Project project) throws ProjectNotFoundException {
-        LOGGER.info("Finish project " + project.getApplication().getName() + " for " + project.getCustomer().getFullName() + ".");
+        LOGGER.info("Finishing project " + project.getApplication().getName() + " for " + project.getCustomer().getFullName() + ".");
         try {
             disassembleTeam(project.getTeam());
             projectsManager.finishProject(project);
