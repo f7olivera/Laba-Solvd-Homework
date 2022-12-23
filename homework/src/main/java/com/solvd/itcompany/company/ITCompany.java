@@ -129,4 +129,8 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
     public void removeProject(Project project) {
         disassembleTeam(projectsManager.removeProject(project));
     }
+
+    public ProjectsManager getProjectsManager() {
+        return projectsManager;
+    }
 }
