@@ -19,6 +19,8 @@ import java.io.FileNotFoundException;
 import java.util.EnumSet;
 import java.util.Scanner;
 
+import static com.solvd.itcompany.company.Project.SECONDS_IN_DAY;
+
 public class Main {
     private final static Logger LOGGER = LogManager.getLogger(Main.class);
 
@@ -51,11 +53,24 @@ public class Main {
             customer = new Customer(name, id, budget);
         }
 
-        Project firefoxProject = itCompany.addProject(firefox, customer);
+        // Add sample projects
+        Project firefoxProject = itCompany.addProject(firefox, customer, 30);
         itCompany.finishProject(firefoxProject);
         itCompany.startProject(firefoxProject);
-
         LOGGER.info("Firefox project example:\n" + firefoxProject);
+
+        Website twitter = new Website("Twitter", EnumSet.of(Environment.CHROME), 50000, "www.twitter.com");
+        Project twitterProject = itCompany.addProject(twitter, customer, 10);
+        itCompany.startProject(twitterProject);
+        LOGGER.info("Twitter project example:\n" + twitterProject);
+
+        // Delay all website projects 1 week
+        itCompany.processProjects(
+                (project) -> project.getApplication().getClass() == Website.class,
+                (project -> project.setDeadline(project.getDeadline() + SECONDS_IN_DAY * 7))
+        );
+
+        LOGGER.info("Twitter project example:\n" + twitterProject);
     }
 
     /**

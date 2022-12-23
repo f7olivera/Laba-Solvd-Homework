@@ -13,6 +13,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class ITCompany extends Company implements IDevelop, IEmploy {
     private final HashMap<Class<? extends Application>, Application> baseApps = new HashMap<>();
@@ -84,6 +86,12 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
         humanResources.addWorker(team.getProductOwner());
     }
 
+    public void processProjects(Predicate<Project> tester, Consumer<Project> block) {
+        for (Project project : projectsManager.getProjects())
+            if (tester.test(project))
+                block.accept(project);
+    }
+
     /*
      * Getters and setters
      */
@@ -109,14 +117,17 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
         }
     }
 
-    public Project addProject(Application application, Customer customer)
+    /**
+     * @param deadline: amount of days left for the deadline date
+     */
+    public Project addProject(Application application, Customer customer, int deadline)
             throws InsufficientBudgetException, NoWorkersAvailableException, NegativeAmountException {
         LOGGER.info("Creating new " + application.getClass().getSimpleName() + " project for " + customer.getFullName() + ".");
         int cost = getQuotation(application).getTotal();
         if (customer.getBudget() < cost) {
             throw new InsufficientBudgetException("Insufficient budget for customer with id " + customer.getId());
         } else {
-            Project project = new Project(application, customer, createTeam(application));
+            Project project = new Project(application, customer, deadline, createTeam(application));
             customer.spend(cost);
             projectsManager.addProject(project);
             return project;
