@@ -69,7 +69,7 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
 
         LinkedList<Developer> devs = new LinkedList<>();
         for (int i = 0; i < appDetails.getNumberOfDevelopers(); i++)
-            devs.add((Developer) humanResources.getWorker(Developer.class));
+            devs.add((Developer) humanResources.getWorkerWithPredicate((worker -> worker.getClass() == Developer.class)));
 
         return new Team(devs,
                 (ProductOwner) humanResources.getWorker(ProductOwner.class),

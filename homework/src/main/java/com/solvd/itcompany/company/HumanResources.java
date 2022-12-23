@@ -5,7 +5,9 @@ import com.solvd.itcompany.exceptions.NoWorkersAvailableException;
 import com.solvd.itcompany.people.Worker;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeSet;
+import java.util.function.Predicate;
 
 public final class HumanResources {
     private final HashMap<Class<? extends Worker>, Integer> baseSalaries = new HashMap<>();
@@ -50,5 +52,13 @@ public final class HumanResources {
             throw new NegativeAmountException("Salary must be a positive number.");
         else
             baseSalaries.put(workerClass, salary);
+    }
+
+    public Worker getWorkerWithPredicate(Predicate<Worker> tester) {
+        for (Map.Entry<Class<? extends Worker>, TreeSet<Worker>> entry : workers.entrySet())
+            for (Worker worker : entry.getValue())
+                if (tester.test(worker))
+                    return worker;
+        return null;
     }
 }
