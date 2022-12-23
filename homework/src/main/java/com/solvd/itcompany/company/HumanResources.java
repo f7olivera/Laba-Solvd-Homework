@@ -7,6 +7,7 @@ import com.solvd.itcompany.people.Worker;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeSet;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public final class HumanResources {
@@ -60,5 +61,9 @@ public final class HumanResources {
                 if (tester.test(worker))
                     return worker;
         return null;
+    }
+
+    public void processWorkers(Class<? extends Worker> workerClass, Consumer<Worker> consumer) {
+        workers.get(workerClass).stream().forEach(consumer);
     }
 }
