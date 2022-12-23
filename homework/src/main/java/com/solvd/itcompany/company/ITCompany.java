@@ -35,8 +35,8 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
         Team team = createTeam(application);
 
         int workersSalaries = humanResources.getSalary(team.getScrumMaster()) + humanResources.getSalary(team.getProductOwner());
-        for (int i = 0; i < team.getDevelopers().size(); i++)
-            workersSalaries += humanResources.getSalary(team.getDevelopers().get(i));
+        for (Developer developer : team.getDevelopers())
+            workersSalaries += humanResources.getSalary(developer);
 
         disassembleTeam(team);
 
