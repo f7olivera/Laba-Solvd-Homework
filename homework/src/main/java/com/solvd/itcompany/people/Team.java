@@ -40,12 +40,24 @@ public class Team {
     /*
      * Getters and setters
      */
-    public void addDeveloper(Developer developer) {
-        this.developers.add(developer);
+    void addWorker(Worker worker) {
+        if (worker.getClass() == Developer.class) {
+            developers.add((Developer) worker);
+        } else if (worker.getClass() == ProductOwner.class) {
+            productOwner = (ProductOwner) worker;
+        } else if (worker.getClass() == ScrumMaster.class) {
+            scrumMaster = (ScrumMaster) worker;
+        }
     }
 
-    public void removeDeveloper(Developer developer) {
-        this.developers.remove(developer);
+    public void removeWorker(Worker worker) {
+        if (worker.getClass() == Developer.class) {
+            developers.remove((Developer) worker);
+        } else if (worker.getClass() == ProductOwner.class) {
+            productOwner = worker == productOwner ? null : (ProductOwner) worker;
+        } else if (worker.getClass() == ScrumMaster.class) {
+            scrumMaster = worker == scrumMaster ? null : (ScrumMaster) worker;
+        }
     }
 
     public LinkedList<Developer> getDevelopers() {
@@ -56,15 +68,7 @@ public class Team {
         return this.productOwner;
     }
 
-    void setProductOwner(ProductOwner productOwner) {
-        this.productOwner = productOwner;
-    }
-
     public ScrumMaster getScrumMaster() {
         return this.scrumMaster;
-    }
-
-    void setScrumMaster(ScrumMaster scrumMaster) {
-        this.scrumMaster = scrumMaster;
     }
 }
