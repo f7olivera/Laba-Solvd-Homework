@@ -133,4 +133,8 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
     public ProjectsManager getProjectsManager() {
         return projectsManager;
     }
+
+    public HumanResources getHumanResources() {
+        return humanResources;
+    }
 }
