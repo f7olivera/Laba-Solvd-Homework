@@ -1,16 +1,13 @@
 package com.solvd.itcompany;
 
 import com.solvd.itcompany.applications.*;
-import com.solvd.itcompany.enums.Environment;
-import com.solvd.itcompany.enums.CompanyType;
 import com.solvd.itcompany.company.ITCompany;
 import com.solvd.itcompany.company.Project;
 import com.solvd.itcompany.company.Quotation;
+import com.solvd.itcompany.enums.CompanyType;
+import com.solvd.itcompany.enums.Environment;
 import com.solvd.itcompany.exceptions.*;
-import com.solvd.itcompany.people.Customer;
-import com.solvd.itcompany.people.Developer;
-import com.solvd.itcompany.people.ProductOwner;
-import com.solvd.itcompany.people.ScrumMaster;
+import com.solvd.itcompany.people.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,6 +15,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.EnumSet;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 import static com.solvd.itcompany.company.Project.SECONDS_IN_DAY;
 
@@ -64,7 +62,7 @@ public class Main {
         itCompany.startProject(twitterProject);
         LOGGER.info("Twitter project example:\n" + twitterProject);
 
-        // Delay all website projects 1 week
+        LOGGER.info("Delaying all website projects by 1 week.");
         itCompany.getProjectsManager().processProjects(
                 (project) -> project.getApplication().getClass() == Website.class,
                 (project -> project.setDeadline(project.getDeadline() + SECONDS_IN_DAY * 7))
