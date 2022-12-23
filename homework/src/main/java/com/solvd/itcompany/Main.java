@@ -65,7 +65,7 @@ public class Main {
         LOGGER.info("Twitter project example:\n" + twitterProject);
 
         // Delay all website projects 1 week
-        itCompany.processProjects(
+        itCompany.getProjectsManager().processProjects(
                 (project) -> project.getApplication().getClass() == Website.class,
                 (project -> project.setDeadline(project.getDeadline() + SECONDS_IN_DAY * 7))
         );
