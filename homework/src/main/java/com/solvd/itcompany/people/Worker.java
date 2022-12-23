@@ -44,6 +44,11 @@ public class Worker extends Person implements IWork, Comparable<Worker> {
         return employeeId;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + String.format("Salary: $%d", salary);
+    }
+
     /*
      * Getters and setters
      */
