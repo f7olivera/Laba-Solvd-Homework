@@ -93,6 +93,12 @@ public class Main {
         itCompany.hireWorker(new Developer(3, "backend"));
         itCompany.hireWorker(new Developer(4, "full-stack"));
 
+        LOGGER.info("Reducing developers salaries by $500.");
+        LOGGER.info(itCompany.getHumanResources().getWorkerWithPredicate((worker) -> worker.getClass() == Developer.class));
+        Consumer<Worker> consumer = (worker) -> worker.setSalary(worker.getSalary() - 500);
+        itCompany.getHumanResources().processWorkers(Developer.class, consumer);
+        LOGGER.info(itCompany.getHumanResources().getWorkerWithPredicate((worker) -> worker.getClass() == Developer.class));
+
         itCompany.hireWorker(new ProductOwner(6));
         itCompany.hireWorker(new ScrumMaster(5));
 
