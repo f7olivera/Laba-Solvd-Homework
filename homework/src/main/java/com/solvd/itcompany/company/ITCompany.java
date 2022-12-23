@@ -1,20 +1,18 @@
 package com.solvd.itcompany.company;
 
-import com.solvd.itcompany.enums.CompanyType;
 import com.solvd.itcompany.applications.AppDetails;
 import com.solvd.itcompany.applications.Application;
+import com.solvd.itcompany.enums.CompanyType;
 import com.solvd.itcompany.exceptions.*;
+import com.solvd.itcompany.interfaces.IDevelop;
 import com.solvd.itcompany.interfaces.IEmploy;
 import com.solvd.itcompany.people.*;
-import com.solvd.itcompany.interfaces.IDevelop;
-
 import com.solvd.linkedlist.LinkedList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
+import java.util.stream.IntStream;
 
 public class ITCompany extends Company implements IDevelop, IEmploy {
     private final HashMap<Class<? extends Application>, Application> baseApps = new HashMap<>();
@@ -70,8 +68,8 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
                 + " developer" + (appDetails.getNumberOfDevelopers() == 1 ? "." : "s."));
 
         LinkedList<Developer> devs = new LinkedList<>();
-        for (int i = 0; i < appDetails.getNumberOfDevelopers(); i++)
-            devs.add((Developer) humanResources.getWorkerWithPredicate((worker -> worker.getClass() == Developer.class)));
+        IntStream.range(0, appDetails.getNumberOfDevelopers())
+                .forEach((i) -> devs.add((Developer) humanResources.getWorkerWithPredicate((worker -> worker.getClass() == Developer.class))));
 
         return new Team(devs,
                 (ProductOwner) humanResources.getWorker(ProductOwner.class),
@@ -84,12 +82,6 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
 
         humanResources.addWorker(team.getScrumMaster());
         humanResources.addWorker(team.getProductOwner());
-    }
-
-    public void processProjects(Predicate<Project> tester, Consumer<Project> block) {
-        for (Project project : projectsManager.getProjects())
-            if (tester.test(project))
-                block.accept(project);
     }
 
     /*
