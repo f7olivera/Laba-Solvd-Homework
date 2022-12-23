@@ -10,6 +10,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public final class ProjectsManager implements IDevelop {
     private final HashSet<Project> projects = new HashSet<>();
@@ -52,6 +54,13 @@ public final class ProjectsManager implements IDevelop {
             projects.add(project);
             LOGGER.info(project.getState());
         }
+    }
+
+    public void processProjects(Predicate<Project> tester, Consumer<Project> block) {
+        projects.stream().forEach((project -> {
+            if (tester.test(project))
+                block.accept(project);
+        }));
     }
 
     /*
