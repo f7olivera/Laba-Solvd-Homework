@@ -80,8 +80,10 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
         for (Developer dev : team.getDevelopers())
             humanResources.addWorker(dev);
 
-        humanResources.addWorker(team.getScrumMaster());
-        humanResources.addWorker(team.getProductOwner());
+        if (team.getScrumMaster() != null)
+            humanResources.addWorker(team.getScrumMaster());
+        if (team.getProductOwner() != null)
+            humanResources.addWorker(team.getProductOwner());
     }
 
     /*

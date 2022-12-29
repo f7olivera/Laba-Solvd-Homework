@@ -7,15 +7,20 @@ import com.solvd.itcompany.company.Quotation;
 import com.solvd.itcompany.enums.CompanyType;
 import com.solvd.itcompany.enums.Environment;
 import com.solvd.itcompany.exceptions.*;
+import com.solvd.itcompany.interfaces.ProjectFilter;
+import com.solvd.itcompany.interfaces.TriPredicate;
 import com.solvd.itcompany.people.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.Instant;
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import static com.solvd.itcompany.company.Project.SECONDS_IN_DAY;
 
@@ -62,6 +67,11 @@ public class Main {
         itCompany.startProject(twitterProject);
         LOGGER.info("Twitter project example:\n" + twitterProject);
 
+        Website facebook = new Website("Facebook", 50000, "www.facebook.com");
+        Project facebookProject = itCompany.addProject(facebook, customer, 2);
+        itCompany.startProject(facebookProject);
+        LOGGER.info("Facebook project example:\n" + facebookProject);
+
         LOGGER.info("Delaying all website projects by 1 week.");
         itCompany.getProjectsManager().processProjects(
                 (project) -> project.getApplication().getClass() == Website.class,
@@ -69,6 +79,30 @@ public class Main {
         );
 
         LOGGER.info("Twitter project example:\n" + twitterProject);
+
+        LOGGER.info("Finding all website projects.");
+        ProjectFilter projectFilter =
+                (projects, appType) ->
+                        projects.stream()
+                                .filter(project -> project.getApplication().getClass() == appType)
+                                .collect(Collectors.toSet());
+        HashSet<Project> websiteProjects = (HashSet<Project>) projectFilter.filter(itCompany.getProjectsManager().getProjects(), Website.class);
+        LOGGER.info(websiteProjects);
+
+        LOGGER.info("Finding all website projects with a deadline within the next 10 days and a cost of at least $10.000.");
+        long timestampTenDays = Instant.now().getEpochSecond() + 10 * SECONDS_IN_DAY;
+        TriPredicate<Class<? extends Application>, Quotation, Long> projectPredicate =
+                (appClass, quotation, deadline) ->
+                        appClass == Website.class && quotation.getTotal() > 10000 && deadline < timestampTenDays;
+
+        HashSet<Project> projects = (HashSet<Project>) itCompany.getProjectsManager().getProjects()
+                .stream()
+                .filter(project ->
+                        projectPredicate.test(project.getApplication().getClass(),
+                                itCompany.getQuotation(project.getApplication()),
+                                project.getDeadline()))
+                .collect(Collectors.toSet());
+        LOGGER.info(projects);
     }
 
     /**
@@ -88,10 +122,20 @@ public class Main {
         itCompany.addApp(new DesktopApp(new AppDetails("name and platforms to be supported", 5000)));
 
         // Hire workers
-        itCompany.hireWorker(new Developer(1, "frontend"));
-        itCompany.hireWorker(new Developer(2, "frontend"));
-        itCompany.hireWorker(new Developer(3, "backend"));
-        itCompany.hireWorker(new Developer(4, "full-stack"));
+        itCompany.hireWorker(new Developer(1, 5000, "frontend"));
+        itCompany.hireWorker(new Developer(2, 5000, "frontend"));
+        itCompany.hireWorker(new Developer(3, "frontend"));
+        itCompany.hireWorker(new Developer(4, "frontend"));
+        itCompany.hireWorker(new Developer(5, "frontend"));
+        itCompany.hireWorker(new Developer(6, 5000, "backend"));
+        itCompany.hireWorker(new Developer(7, 5000, "backend"));
+        itCompany.hireWorker(new Developer(8, "backend"));
+        itCompany.hireWorker(new Developer(9, "backend"));
+        itCompany.hireWorker(new Developer(10, 5000, "backend"));
+        itCompany.hireWorker(new Developer(11, 5000, "full-stack"));
+        itCompany.hireWorker(new Developer(12, "full-stack"));
+        itCompany.hireWorker(new Developer(13, "full-stack"));
+        itCompany.hireWorker(new Developer(14, "full-stack"));
 
         LOGGER.info("Reducing developers salaries by $500.");
         LOGGER.info(itCompany.getHumanResources().getWorkerWithPredicate((worker) -> worker.getClass() == Developer.class));
@@ -99,8 +143,12 @@ public class Main {
         itCompany.getHumanResources().processWorkers(Developer.class, consumer);
         LOGGER.info(itCompany.getHumanResources().getWorkerWithPredicate((worker) -> worker.getClass() == Developer.class));
 
-        itCompany.hireWorker(new ProductOwner(6));
-        itCompany.hireWorker(new ScrumMaster(5));
+        itCompany.hireWorker(new ProductOwner(15));
+        itCompany.hireWorker(new ProductOwner(16));
+        itCompany.hireWorker(new ProductOwner(17));
+        itCompany.hireWorker(new ScrumMaster(18));
+        itCompany.hireWorker(new ScrumMaster(19));
+        itCompany.hireWorker(new ScrumMaster(20));
 
         return itCompany;
     }
