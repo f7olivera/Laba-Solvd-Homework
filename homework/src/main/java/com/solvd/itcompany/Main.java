@@ -57,21 +57,25 @@ public class Main {
         }
 
         // Add sample projects
+        // Firefox project
         Project firefoxProject = itCompany.addProject(firefox, customer, 30);
         itCompany.finishProject(firefoxProject);
         itCompany.startProject(firefoxProject);
         LOGGER.info("Firefox project example:\n" + firefoxProject);
 
+        // Twitter project
         Website twitter = new Website("Twitter", EnumSet.of(Environment.CHROME), 50000, "www.twitter.com");
         Project twitterProject = itCompany.addProject(twitter, customer, 10);
         itCompany.startProject(twitterProject);
         LOGGER.info("Twitter project example:\n" + twitterProject);
 
+        // Facebook project
         Website facebook = new Website("Facebook", 50000, "www.facebook.com");
         Project facebookProject = itCompany.addProject(facebook, customer, 2);
         itCompany.startProject(facebookProject);
         LOGGER.info("Facebook project example:\n" + facebookProject);
 
+        // Use lambdas
         LOGGER.info("Delaying all website projects by 1 week.");
         itCompany.getProjectsManager().processProjects(
                 (project) -> project.getApplication().getClass() == Website.class,
