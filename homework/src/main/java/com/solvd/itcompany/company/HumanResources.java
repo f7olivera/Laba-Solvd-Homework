@@ -2,6 +2,7 @@ package com.solvd.itcompany.company;
 
 import com.solvd.itcompany.exceptions.NegativeAmountException;
 import com.solvd.itcompany.exceptions.NoWorkersAvailableException;
+import com.solvd.itcompany.interfaces.IExist;
 import com.solvd.itcompany.people.Worker;
 
 import java.util.HashMap;
@@ -32,7 +33,7 @@ public final class HumanResources {
     }
 
     public Worker getWorker(Class<? extends Worker> workerClass) throws NoWorkersAvailableException {
-        if (workers.get(workerClass).isEmpty()) {
+        if (workerExists(() -> workers.get(workerClass).isEmpty())) {
             throw new NoWorkersAvailableException("No workers available.");
         } else {
             Worker worker = workers.get(workerClass).first();
@@ -65,5 +66,9 @@ public final class HumanResources {
 
     public void processWorkers(Class<? extends Worker> workerClass, Consumer<Worker> consumer) {
         workers.get(workerClass).stream().forEach(consumer);
+    }
+
+    public boolean workerExists(IExist exist) {
+        return exist.exists();
     }
 }
