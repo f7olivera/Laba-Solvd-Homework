@@ -71,7 +71,6 @@ public final class ProjectsManager implements IDevelop {
     }
 
     public void addProject(Project project) {
-        // Create team based on the application needs
         this.projects.add(project);
     }
 
