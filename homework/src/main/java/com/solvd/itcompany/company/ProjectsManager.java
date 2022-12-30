@@ -72,6 +72,10 @@ public final class ProjectsManager implements IDevelop {
         return this.projects;
     }
 
+    public void setProjects(HashSet<Project> projects) {
+        this.projects = projects;
+    }
+
     public void addProject(Project project) {
         this.projects.add(project);
     }
