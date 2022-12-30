@@ -29,6 +29,6 @@ public final class DesktopApp extends Application {
     public String toString() {
         return "- Application type: " + this.getClass().getSimpleName() + "\n" +
                 "- Name: " + this.getName() + "\n" +
-                "- Platforms: " + Environment.toString(this.getSupportedEnvironments());
+                "- Platforms: " + Environment.toString(this.getSupportedEnvironments()) + "\n";
     }
 }

@@ -34,7 +34,7 @@ public final class Website extends Application {
         return "- Application type: " + this.getClass().getSimpleName() + "\n" +
                 "- Name: " + this.getName() + "\n" +
                 "- Domain: " + this.getDomain() + "\n" +
-                "- Supported browsers: " + Environment.toString(this.getSupportedEnvironments());
+                "- Supported browsers: " + Environment.toString(this.getSupportedEnvironments()) + "\n";
     }
 
     /*

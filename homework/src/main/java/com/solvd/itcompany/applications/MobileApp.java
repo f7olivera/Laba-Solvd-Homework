@@ -35,6 +35,6 @@ public final class MobileApp extends Application {
     public String toString() {
         return "- Application type: " + this.getClass().getSimpleName() + "\n" +
                 "- Name: " + this.getName() + "\n" +
-                "- Operating Systems: " + Environment.toString(this.getSupportedEnvironments());
+                "- Operating Systems: " + Environment.toString(this.getSupportedEnvironments()) + "\n";
     }
 }
