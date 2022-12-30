@@ -23,6 +23,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import static com.solvd.itcompany.company.Project.SECONDS_IN_DAY;
+import static com.solvd.itcompany.company.Project.timestamp2date;
 
 public class Main {
     private final static Logger LOGGER = LogManager.getLogger(Main.class);
@@ -76,14 +77,6 @@ public class Main {
         LOGGER.info("Facebook project example:\n" + facebookProject);
 
         // Use lambdas
-        LOGGER.info("Delaying all website projects by 1 week.");
-        itCompany.getProjectsManager().processProjects(
-                (project) -> project.getApplication().getClass() == Website.class,
-                (project -> project.setDeadline(project.getDeadline() + SECONDS_IN_DAY * 7))
-        );
-
-        LOGGER.info("Twitter project example:\n" + twitterProject);
-
         LOGGER.info("Finding all website projects.");
         ProjectFilter projectFilter =
                 (projects, appType) ->
@@ -92,6 +85,21 @@ public class Main {
                                 .collect(Collectors.toSet());
         HashSet<Project> websiteProjects = (HashSet<Project>) projectFilter.filter(itCompany.getProjectsManager().getProjects(), Website.class);
         LOGGER.info(websiteProjects);
+
+        websiteProjects
+                .stream()
+                .forEach(project -> LOGGER.info(project.getApplication().getName() + " project deadline: " + timestamp2date(project.getDeadline())));
+        LOGGER.info("Delaying all website projects by 1 week.");
+        itCompany.getProjectsManager().processProjects(
+                (project) -> project.getApplication().getClass() == Website.class,
+                (project -> {
+                    project.setDeadline(project.getDeadline() + SECONDS_IN_DAY * 7);
+                    return project;
+                })
+        );
+        websiteProjects
+                .stream()
+                .forEach(project -> LOGGER.info(project.getApplication().getName() + " project deadline: " + timestamp2date(project.getDeadline())));
 
         LOGGER.info("Finding all website projects with a deadline within the next 10 days and a cost of at least $10.000.");
         long timestampTenDays = Instant.now().getEpochSecond() + 10 * SECONDS_IN_DAY;
@@ -103,7 +111,7 @@ public class Main {
                 .stream()
                 .filter(project ->
                         projectPredicate.test(project.getApplication().getClass(),
-                                itCompany.getQuotation(project.getApplication()),
+                                project.getQuotation(),
                                 project.getDeadline()))
                 .collect(Collectors.toSet());
         LOGGER.info(projects);
