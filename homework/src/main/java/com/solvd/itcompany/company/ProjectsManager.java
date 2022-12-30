@@ -10,11 +10,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public final class ProjectsManager implements IDevelop {
-    private final HashSet<Project> projects = new HashSet<>();
+    private HashSet<Project> projects = new HashSet<>();
     private final String UNRECOGNIZED_PROJECT_MESSAGE = "This project does not belong to this company.";
     private final static Logger LOGGER = LogManager.getLogger(ProjectsManager.class);
 
@@ -56,11 +57,12 @@ public final class ProjectsManager implements IDevelop {
         }
     }
 
-    public void processProjects(Predicate<Project> tester, Consumer<Project> block) {
-        projects.stream().forEach((project -> {
-            if (tester.test(project))
-                block.accept(project);
-        }));
+    public void processProjects(Predicate<Project> tester, Function<Project, Project> function) {
+        setProjects(
+                (HashSet<Project>) projects.stream()
+                        .map((project -> tester.test(project) ? function.apply(project) : project))
+                        .collect(Collectors.toSet())
+        );
     }
 
     /*
