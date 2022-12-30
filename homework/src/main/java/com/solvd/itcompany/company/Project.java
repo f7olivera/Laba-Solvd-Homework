@@ -15,31 +15,29 @@ import java.util.Objects;
 public class Project {
     private Application application;
     private Customer customer;
+    private Quotation quotation;
     private Team team;
     private ProjectState projectState = ProjectState.NOT_STARTED;
     private long deadline;
     public static final int SECONDS_IN_DAY = 86400;
 
-    public Project(Application application, Customer customer, int deadline) {
+    public Project(Application application, Customer customer, Quotation quotation, int deadline) {
         this.application = application;
         this.customer = customer;
+        this.quotation = quotation;
         this.deadline = Instant.now().getEpochSecond() + (long) deadline * SECONDS_IN_DAY;
     }
 
-    public Project(Application application, Customer customer, int deadline, Team team) {
-        this(application, customer, deadline);
+    public Project(Application application, Customer customer, Quotation quotation, int deadline, Team team) {
+        this(application, customer, quotation, deadline);
         this.team = team;
     }
 
     @Override
     public String toString() {
-        LocalDateTime dateTime = LocalDateTime.ofEpochSecond(deadline, 0, ZoneOffset.UTC);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
-        String formattedDate = dateTime.format(formatter);
-
         return "Project to build a " + application.getClass().getSimpleName() +
                 " for " + customer.getFullName() + "\n" +
-                "Deadline: " + formattedDate + "\n" +
+                "Deadline: " + timestamp2date(deadline) + "\n" +
                 "Details:\n" + application.toString();
     }
 
@@ -55,6 +53,12 @@ public class Project {
     @Override
     public int hashCode() {
         return Objects.hash(application, customer);
+    }
+
+    public static String timestamp2date(long deadline) {
+        LocalDateTime dateTime = LocalDateTime.ofEpochSecond(deadline, 0, ZoneOffset.UTC);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
+        return dateTime.format(formatter);
     }
 
     /*
@@ -74,6 +78,14 @@ public class Project {
 
     void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Quotation getQuotation() {
+        return quotation;
+    }
+
+    public void setQuotation(Quotation quotation) {
+        this.quotation = quotation;
     }
 
     public Team getTeam() {
