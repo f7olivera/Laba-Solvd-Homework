@@ -117,12 +117,12 @@ public class ITCompany extends Company implements IDevelop, IEmploy {
     public Project addProject(Application application, Customer customer, int deadline)
             throws InsufficientBudgetException, NoWorkersAvailableException, NegativeAmountException {
         LOGGER.info("Creating new " + application.getClass().getSimpleName() + " project for " + customer.getFullName() + ".");
-        int cost = getQuotation(application).getTotal();
-        if (customer.getBudget() < cost) {
+        Quotation quotation = getQuotation(application);
+        if (customer.getBudget() < quotation.getTotal()) {
             throw new InsufficientBudgetException("Insufficient budget for customer with id " + customer.getId());
         } else {
-            Project project = new Project(application, customer, deadline, createTeam(application));
-            customer.spend(cost);
+            Project project = new Project(application, customer, quotation, deadline, createTeam(application));
+            customer.spend(quotation.getTotal());
             projectsManager.addProject(project);
             return project;
         }
