@@ -27,7 +27,7 @@ public class LinkedList<T> implements Iterable<T> {
     /**
      * Inserts the specified element at the specified position in the list.
      *
-     * @param index: position where the element will be placed.
+     * @param index:   position where the element will be placed.
      * @param element: element to be added.
      */
     public void add(int index, T element) {
@@ -137,7 +137,6 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Returns true if the list is empty.
-     *
      */
     public boolean isEmpty() {
         return size == 0;
@@ -145,7 +144,6 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Returns the size of the list.
-     *
      */
     public int size() {
         return size;
@@ -197,7 +195,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T> () {
+        return new Iterator<T>() {
             private Node<T> current = head;
 
             @Override
