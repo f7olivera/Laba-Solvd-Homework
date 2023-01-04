@@ -1,6 +1,8 @@
 package com.solvd.reflection;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -9,13 +11,17 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 
 public class Main {
+    private final static Logger LOGGER = LogManager.getLogger(Main.class);
+
     public static void main(String[] args)
             throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class<?> carClass = Class.forName("com.solvd.reflection.vehicle.Car");
         Object car = carClass.getConstructor(String.class, int.class).newInstance("Toyota Corolla", 2006);
 
         // Print information about class
-        System.out.printf("Parent class of %s is %s\n", carClass.getSimpleName(), carClass.getSuperclass().getSimpleName());
+        LOGGER.info(String.format(
+                "Parent class of %s is %s", carClass.getSimpleName(), carClass.getSuperclass().getSimpleName()
+        ));
 
         // Print interfaces
         Class<?>[] interfaces = {};
@@ -24,9 +30,11 @@ public class Main {
             interfaces = ArrayUtils.addAll(interfaces, currentClass.getInterfaces());
             currentClass = currentClass.getSuperclass();
         }
-        System.out.printf("%s implements %s\n\n",
+        LOGGER.info(String.format(
+                "%s implements %s\n",
                 carClass.getSimpleName(),
-                Arrays.toString(Arrays.stream(interfaces).map(Class::getSimpleName).toArray()));
+                Arrays.toString(Arrays.stream(interfaces).map(Class::getSimpleName).toArray())
+        ));
 
         // Print fields
         printFields(carClass);
@@ -37,26 +45,28 @@ public class Main {
         printMethods(carClass.getSuperclass());
 
         // Call methods with parameters
-        System.out.println("Calling methods using reflection.");
+        LOGGER.info("Calling methods using reflection.");
         carClass.getMethod("moveForward").invoke(car);
         carClass.getMethod("steer", int.class).invoke(car, 5);
     }
 
     public static void printFields(Class<?> objectClass) {
-        System.out.printf("Declared fields of %s: \n", objectClass.getSimpleName());
+        LOGGER.info(String.format("Declared fields of %s: ", objectClass.getSimpleName()));
         for (Field field : objectClass.getDeclaredFields()) {
-            System.out.println(field.getName() + ":");
-            System.out.println("- modifiers: " + Modifier.toString(field.getModifiers()));
-            System.out.println("- type: " + field.getType() + "\n");
+            LOGGER.info(field.getName() + ":");
+            LOGGER.info("    modifiers: " + Modifier.toString(field.getModifiers()));
+            LOGGER.info("    type: " + field.getType());
         }
+        LOGGER.info("\n");
     }
 
     public static void printMethods(Class<?> objectClass) {
-        System.out.printf("Declared methods of %s: \n", objectClass.getSimpleName());
+        LOGGER.info(String.format("Declared methods of %s: ", objectClass.getSimpleName()));
         for (Method method : objectClass.getDeclaredMethods()) {
-            System.out.println(method.getName() + ":");
-            System.out.println("- modifiers: " + Modifier.toString(method.getModifiers()));
-            System.out.println("- parameter types: " + Arrays.toString(method.getParameterTypes()) + "\n");
+            LOGGER.info(method.getName() + ":");
+            LOGGER.info("    modifiers: " + Modifier.toString(method.getModifiers()));
+            LOGGER.info("    parameter types: " + Arrays.toString(method.getParameterTypes()));
         }
+        LOGGER.info("\n");
     }
 }

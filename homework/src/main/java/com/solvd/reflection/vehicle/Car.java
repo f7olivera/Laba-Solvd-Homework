@@ -1,6 +1,10 @@
 package com.solvd.reflection.vehicle;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Car extends Vehicle {
+    private final static Logger LOGGER = LogManager.getLogger(Car.class);
     private int capacity;
 
     public Car(String model, int year) {
@@ -9,22 +13,22 @@ public class Car extends Vehicle {
 
     @Override
     public void moveForward() {
-        System.out.println("Car is moving forward.");
+        LOGGER.info("Car is moving forward.");
     }
 
     @Override
     public void moveBackward() {
-        System.out.println("Car is moving backward.");
+        LOGGER.info("Car is moving backward.");
     }
 
     @Override
     public void stop() {
-        System.out.println("Car is stopping.");
+        LOGGER.info("Car is stopping.");
     }
 
     @Override
     public void steer(int wheelPosition) {
-        System.out.println("Car is steering " + (wheelPosition < 0 ? "left." : (wheelPosition > 0 ? "right." : "center.")));
+        LOGGER.info("Car is steering " + (wheelPosition < 0 ? "left." : (wheelPosition > 0 ? "right." : "center.")));
     }
 
     public static String honk() {
