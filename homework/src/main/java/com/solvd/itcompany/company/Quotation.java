@@ -17,7 +17,7 @@ public class Quotation {
     public String toString() {
         return "Total: $" + getTotal() + "\n" +
                 "- Application price: $" + appPrice + "\n" +
-                "- Workers Salaries: $" + workersSalaries;
+                "- Workers salaries: $" + workersSalaries;
     }
 
     /*
