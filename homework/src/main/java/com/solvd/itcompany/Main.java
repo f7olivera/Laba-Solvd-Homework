@@ -1,10 +1,12 @@
 package com.solvd.itcompany;
 
+import com.solvd.itcompany.applications.Application;
 import com.solvd.itcompany.applications.DesktopApp;
 import com.solvd.itcompany.applications.MobileApp;
 import com.solvd.itcompany.applications.Website;
 import com.solvd.itcompany.company.ITCompany;
 import com.solvd.itcompany.company.Project;
+import com.solvd.itcompany.company.Quotation;
 import com.solvd.itcompany.enums.Environment;
 import com.solvd.itcompany.exceptions.*;
 import com.solvd.itcompany.people.Customer;
@@ -18,11 +20,10 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 import static com.solvd.itcompany.Initializer.initITCompany;
-import static com.solvd.itcompany.Initializer.logExample;
 import static com.solvd.itcompany.company.Project.timestamp2date;
 
 public class Main {
-    private final static Logger LOGGER = LogManager.getLogger(Main.class);
+    private final static Logger LOGGER = LogManager.getLogger("com.solvd.itcompany");
 
     public static void main(String[] args)
             throws NoWorkersAvailableException, InsufficientBudgetException, ProjectNotFoundException,
@@ -89,5 +90,17 @@ public class Main {
         // Get upcoming projects
         HashSet<Project> upcomingProjects = itCompany.getProjectsManager().getUpcomingProjects();
         LOGGER.info(upcomingProjects);
+    }
+
+    /**
+     * Print requirements and quotation for an Application
+     */
+    public static void logExample(ITCompany itCompany, Application app) throws NoWorkersAvailableException {
+        LOGGER.info(String.format("Logging %s example.", app.getClass().getSimpleName()));
+        String appRequirements = itCompany.getRequirements(app);
+        LOGGER.info(String.format("Requirements to build a %s: ", app.getClass().getSimpleName()) + appRequirements + ".");
+
+        Quotation appQuotation = itCompany.getQuotation(app);
+        LOGGER.info("Quotation for this project:\n" + appQuotation);
     }
 }
