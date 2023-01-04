@@ -7,7 +7,7 @@ public class ConnectionPool {
     private final int CONNECTIONS_LIMIT = 5;
     private int availableConnections = CONNECTIONS_LIMIT;
 
-    public Connection connect() throws NoConnectionsAvailableException {
+    public synchronized Connection connect() throws NoConnectionsAvailableException {
         if (availableConnections == 0)
             throw new NoConnectionsAvailableException("No connections available.");
 
@@ -25,7 +25,7 @@ public class ConnectionPool {
         return connection;
     }
 
-    public void disconnect(Connection connection) {
+    public synchronized void disconnect(Connection connection) {
         System.out.println("Disconnecting client.");
 
         connections.add(connection);
