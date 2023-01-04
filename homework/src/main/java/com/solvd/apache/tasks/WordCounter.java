@@ -11,11 +11,11 @@ import static java.nio.charset.Charset.defaultCharset;
 
 public final class WordCounter {
     public static void countWords(String inputPath, String outputPath) throws IOException {
-        HashMap<String, Integer> wordCounter = new HashMap<>();
+        HashMap<String, Integer> occurrences = new HashMap<>();
 
         for (String word : StringUtils.lowerCase(FileUtils.readFileToString(new File(inputPath), defaultCharset())).split("\\W+"))
-            wordCounter.put(word, wordCounter.getOrDefault(word, 0) + 1);
+            occurrences.put(word, occurrences.getOrDefault(word, 0) + 1);
 
-        FileUtils.write(new File(outputPath), wordCounter.toString().replace(", ", ",\n"), defaultCharset());
+        FileUtils.write(new File(outputPath), occurrences.toString().replace(", ", ",\n"), defaultCharset());
     }
 }
