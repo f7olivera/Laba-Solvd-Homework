@@ -1,10 +1,11 @@
 package com.solvd.itcompany;
 
-import com.solvd.itcompany.applications.*;
+import com.solvd.itcompany.applications.AppDetails;
+import com.solvd.itcompany.applications.DesktopApp;
+import com.solvd.itcompany.applications.MobileApp;
+import com.solvd.itcompany.applications.Website;
 import com.solvd.itcompany.company.ITCompany;
-import com.solvd.itcompany.company.Quotation;
 import com.solvd.itcompany.enums.CompanyType;
-import com.solvd.itcompany.exceptions.NoWorkersAvailableException;
 import com.solvd.itcompany.people.Developer;
 import com.solvd.itcompany.people.ProductOwner;
 import com.solvd.itcompany.people.ScrumMaster;
@@ -15,7 +16,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.function.Consumer;
 
 public final class Initializer {
-    private final static Logger LOGGER = LogManager.getLogger(Main.class);
+    private final static Logger LOGGER = LogManager.getLogger(Initializer.class);
 
     /**
      * Create an instance of ITCompany
@@ -50,10 +51,8 @@ public final class Initializer {
         itCompany.hireWorker(new Developer(14, "full-stack"));
 
         LOGGER.info("Reducing developers salaries by $500.");
-        LOGGER.info(itCompany.getHumanResources().getWorkerWithPredicate((worker) -> worker.getClass() == Developer.class));
         Consumer<Worker> consumer = (worker) -> worker.setSalary(worker.getSalary() - 500);
         itCompany.getHumanResources().processWorkers(Developer.class, consumer);
-        LOGGER.info(itCompany.getHumanResources().getWorkerWithPredicate((worker) -> worker.getClass() == Developer.class));
 
         itCompany.hireWorker(new ProductOwner(15));
         itCompany.hireWorker(new ProductOwner(16));
@@ -63,17 +62,5 @@ public final class Initializer {
         itCompany.hireWorker(new ScrumMaster(20));
 
         return itCompany;
-    }
-
-    /**
-     * Print requirements and quotation for an Application
-     */
-    public static void logExample(ITCompany itCompany, Application app) throws NoWorkersAvailableException {
-        LOGGER.info(String.format("Logging %s example.", app.getClass().getSimpleName()));
-        String appRequirements = itCompany.getRequirements(app);
-        LOGGER.info(String.format("Requirements to build a %s: ", app.getClass().getSimpleName()) + appRequirements + ".");
-
-        Quotation appQuotation = itCompany.getQuotation(app);
-        LOGGER.info("Quotation for this project:\n" + appQuotation);
     }
 }
