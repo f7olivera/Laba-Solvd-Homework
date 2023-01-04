@@ -1,8 +1,8 @@
 package com.solvd.itcompany.enums;
 
-import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.util.Date;
+
+import static com.solvd.itcompany.company.Project.timestamp2date;
 
 public enum ProjectState {
     NOT_STARTED {
@@ -14,18 +14,18 @@ public enum ProjectState {
     STARTED(Instant.now().getEpochSecond()) {
         @Override
         public String toString() {
-            return "Project started at " + formatDate() + " with priority " + getPriority() + ".";
+            return "Project started at " + timestamp2date(getTimestamp()) + " with priority " + getPriority() + ".";
         }
     },
     FINISHED(Instant.now().getEpochSecond(), -1) {
         @Override
         public String toString() {
-            return "Project finished at " + formatDate() + ".";
+            return "Project finished at " + timestamp2date(getTimestamp()) + ".";
         }
     };
 
     private long timestamp;
-    private int priority = -1;
+    private int priority = 0;
 
     ProjectState() {
     }
@@ -37,12 +37,6 @@ public enum ProjectState {
     ProjectState(long timestamp, int priority) {
         this(timestamp);
         this.priority = priority;
-    }
-
-    public String formatDate() {
-        Date date = new Date(timestamp * 1000L);
-        SimpleDateFormat jdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
-        return jdf.format(date) + " (UTC)";
     }
 
     public long getTimestamp() {
