@@ -4,7 +4,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class ConnectionPool {
     private final ConcurrentLinkedQueue<Connection> connections = new ConcurrentLinkedQueue<>();
-    private int availableConnections = 5;
+    private final int CONNECTIONS_LIMIT = 5;
+    private int availableConnections = CONNECTIONS_LIMIT;
 
     public Connection connect() throws NoConnectionsAvailableException {
         if (availableConnections == 0)
