@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 
 public class ClientsRunner {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        ConnectionPool connectionPool = new ConnectionPool();
+        ConnectionPool connectionPool = new ConnectionPool(5);
 
         ExecutorService executorService = Executors.newFixedThreadPool(5);
 

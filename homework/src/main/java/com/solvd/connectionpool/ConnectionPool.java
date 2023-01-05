@@ -7,9 +7,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class ConnectionPool {
     private final ConcurrentLinkedQueue<Connection> connections = new ConcurrentLinkedQueue<>();
-    private final int CONNECTIONS_LIMIT = 5;
-    private int availableConnections = CONNECTIONS_LIMIT;
+    private final int maxConnections;
+    private int availableConnections;
     private final static Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
+
+    public ConnectionPool(int maxConnections) {
+        this.maxConnections = maxConnections;
+        this.availableConnections = maxConnections;
+    }
 
     public synchronized Connection connect() throws NoConnectionsAvailableException {
         if (availableConnections == 0)
@@ -19,7 +24,7 @@ public class ConnectionPool {
 
         Connection connection;
         if (connections.isEmpty())
-            connection = new Connection(CONNECTIONS_LIMIT - availableConnections);
+            connection = new Connection(maxConnections - availableConnections);
         else {
             connection = connections.iterator().next();
             connections.remove(connection);
