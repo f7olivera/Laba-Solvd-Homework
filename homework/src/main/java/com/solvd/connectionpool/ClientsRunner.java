@@ -11,13 +11,13 @@ public class ClientsRunner {
 
         ExecutorService executorService = Executors.newFixedThreadPool(5);
 
-        CompletableFuture<Client> completable1 = CompletableFuture.supplyAsync(() -> runClient(connectionPool, 1000), executorService);
-        CompletableFuture<Client> completable2 = CompletableFuture.supplyAsync(() -> runClient(connectionPool, 500), executorService);
-        CompletableFuture<Client> completable3 = CompletableFuture.supplyAsync(() -> runClient(connectionPool, 1500), executorService);
-        CompletableFuture<Client> completable4 = CompletableFuture.supplyAsync(() -> runClient(connectionPool, 2000), executorService);
-        CompletableFuture<Client> completable5 = CompletableFuture.supplyAsync(() -> runClient(connectionPool, 500), executorService);
-        CompletableFuture<Client> completable6 = CompletableFuture.supplyAsync(() -> runClient(connectionPool, 750), executorService);
-        CompletableFuture<Client> completable7 = CompletableFuture.supplyAsync(() -> runClient(connectionPool, 750), executorService);
+        CompletableFuture<Void> completable1 = CompletableFuture.runAsync(() -> new Client(connectionPool, 1000).run(), executorService);
+        CompletableFuture<Void> completable2 = CompletableFuture.runAsync(() -> new Client(connectionPool, 500).run(), executorService);
+        CompletableFuture<Void> completable3 = CompletableFuture.runAsync(() -> new Client(connectionPool, 1500).run(), executorService);
+        CompletableFuture<Void> completable4 = CompletableFuture.runAsync(() -> new Client(connectionPool, 2000).run(), executorService);
+        CompletableFuture<Void> completable5 = CompletableFuture.runAsync(() -> new Client(connectionPool, 500).run(), executorService);
+        CompletableFuture<Void> completable6 = CompletableFuture.runAsync(() -> new Client(connectionPool, 750).run(), executorService);
+        CompletableFuture<Void> completable7 = CompletableFuture.runAsync(() -> new Client(connectionPool, 750).run(), executorService);
 
         completable1.get();
         completable2.get();
@@ -28,11 +28,5 @@ public class ClientsRunner {
         completable7.get();
 
         executorService.shutdown();
-    }
-
-    public static Client runClient(ConnectionPool connectionPool, int timeout) {
-        Client client = new Client(connectionPool, timeout);
-        client.run();
-        return client;
     }
 }
