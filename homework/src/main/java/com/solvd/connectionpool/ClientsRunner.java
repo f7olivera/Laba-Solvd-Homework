@@ -20,8 +20,6 @@ public class ClientsRunner {
         executorService.execute(client4);
         executorService.execute(client5);
 
-        // All threads are executed using 5 threads
-        // 3 threads are used to execute the 6 threads
         executorService.shutdown();
     }
 }
