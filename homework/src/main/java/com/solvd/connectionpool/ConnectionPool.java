@@ -1,11 +1,15 @@
 package com.solvd.connectionpool;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class ConnectionPool {
     private final ConcurrentLinkedQueue<Connection> connections = new ConcurrentLinkedQueue<>();
     private final int CONNECTIONS_LIMIT = 5;
     private int availableConnections = CONNECTIONS_LIMIT;
+    private final static Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
 
     public synchronized Connection connect() throws NoConnectionsAvailableException {
         if (availableConnections == 0)
@@ -21,13 +25,13 @@ public class ConnectionPool {
             connections.remove(connection);
         }
 
-        System.out.println(String.format("Connecting client (%s)", connection));
+        LOGGER.info(String.format("Connecting client (%s)", connection));
 
         return connection;
     }
 
     public synchronized void disconnect(Connection connection) {
-        System.out.println(String.format("Disconnecting client (%s)", connection));
+        LOGGER.info(String.format("Disconnecting client (%s)", connection));
 
         availableConnections++;
         connections.add(connection);
