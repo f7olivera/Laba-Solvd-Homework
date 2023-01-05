@@ -11,24 +11,25 @@ public class ConnectionPool {
         if (availableConnections == 0)
             throw new NoConnectionsAvailableException("No connections available.");
 
-        System.out.println("Connecting client.");
+        availableConnections--;
 
         Connection connection;
         if (connections.isEmpty())
-            connection = new Connection();
+            connection = new Connection(CONNECTIONS_LIMIT - availableConnections);
         else {
             connection = connections.iterator().next();
             connections.remove(connection);
         }
 
-        availableConnections--;
+        System.out.println(String.format("Connecting client (%s)", connection));
+
         return connection;
     }
 
     public synchronized void disconnect(Connection connection) {
-        System.out.println("Disconnecting client.");
+        System.out.println(String.format("Disconnecting client (%s)", connection));
 
-        connections.add(connection);
         availableConnections++;
+        connections.add(connection);
     }
 }
