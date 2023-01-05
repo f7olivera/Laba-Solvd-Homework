@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class ConnectionPool {
-    private final ConcurrentLinkedQueue<Connection> connections = new ConcurrentLinkedQueue<>();
+    private final ConcurrentLinkedQueue<Connection> pool = new ConcurrentLinkedQueue<>();
     private final int maxConnections;
     private int availableConnections;
     private final static Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
@@ -23,11 +23,11 @@ public class ConnectionPool {
         availableConnections--;
 
         Connection connection;
-        if (connections.isEmpty())
+        if (pool.isEmpty())
             connection = new Connection(maxConnections - availableConnections);
         else {
-            connection = connections.iterator().next();
-            connections.remove(connection);
+            connection = pool.iterator().next();
+            pool.remove(connection);
         }
 
         LOGGER.info(String.format("Connecting client (%s)", connection));
@@ -39,6 +39,6 @@ public class ConnectionPool {
         LOGGER.info(String.format("Disconnecting client (%s)", connection));
 
         availableConnections++;
-        connections.add(connection);
+        pool.add(connection);
     }
 }
