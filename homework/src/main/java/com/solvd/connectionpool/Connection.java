@@ -9,6 +9,6 @@ public class Connection {
 
     @Override
     public String toString() {
-        return "Connection " + id;
+        return "connection #" + id;
     }
 }
