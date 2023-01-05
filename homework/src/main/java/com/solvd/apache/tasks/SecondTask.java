@@ -23,7 +23,7 @@ public final class SecondTask {
         while (filesIterator.hasNext())
             files.add(filesIterator.next());
 
-        // Sort files by its lastModified value
+        // Use min function to get the last modified file
         return min(files, (file1, file2) -> {
             try {
                 long file1date = FileUtils.lastModified(file1);
