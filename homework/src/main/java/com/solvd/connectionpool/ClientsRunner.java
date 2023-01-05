@@ -1,9 +1,6 @@
 package com.solvd.connectionpool;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 public class ClientsRunner {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
@@ -11,13 +8,13 @@ public class ClientsRunner {
 
         ExecutorService executorService = Executors.newFixedThreadPool(5);
 
-        CompletableFuture<Void> completable1 = CompletableFuture.runAsync(() -> new Client(connectionPool, 1000).run(), executorService);
-        CompletableFuture<Void> completable2 = CompletableFuture.runAsync(() -> new Client(connectionPool, 500).run(), executorService);
-        CompletableFuture<Void> completable3 = CompletableFuture.runAsync(() -> new Client(connectionPool, 1500).run(), executorService);
-        CompletableFuture<Void> completable4 = CompletableFuture.runAsync(() -> new Client(connectionPool, 2000).run(), executorService);
-        CompletableFuture<Void> completable5 = CompletableFuture.runAsync(() -> new Client(connectionPool, 500).run(), executorService);
-        CompletableFuture<Void> completable6 = CompletableFuture.runAsync(() -> new Client(connectionPool, 750).run(), executorService);
-        CompletableFuture<Void> completable7 = CompletableFuture.runAsync(() -> new Client(connectionPool, 750).run(), executorService);
+        Future<Void> completable1 = CompletableFuture.runAsync(() -> new Client(connectionPool, 1500).run(), executorService);
+        Future<Void> completable2 = CompletableFuture.runAsync(() -> new Client(connectionPool, 1000).run(), executorService);
+        Future<Void> completable3 = CompletableFuture.runAsync(() -> new Client(connectionPool, 2500).run(), executorService);
+        Future<Void> completable4 = CompletableFuture.runAsync(() -> new Client(connectionPool, 2500).run(), executorService);
+        Future<Void> completable5 = CompletableFuture.runAsync(() -> new Client(connectionPool, 2500).run(), executorService);
+        Future<Void> completable6 = CompletableFuture.runAsync(() -> new Client(connectionPool, 1000).run(), executorService);
+        Future<Void> completable7 = CompletableFuture.runAsync(() -> new Client(connectionPool, 1000).run(), executorService);
 
         completable1.get();
         completable2.get();
