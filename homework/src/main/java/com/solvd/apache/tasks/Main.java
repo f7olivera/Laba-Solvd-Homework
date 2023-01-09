@@ -26,7 +26,7 @@ public class Main {
 
         // SecondTask.rotateWord() example
         String wordToRotate = "text";
-        System.out.printf("Rotating word \"%s\" ", wordToRotate);
+        System.out.printf("Rotating word \"%s\": ", wordToRotate);
         System.out.println(SecondTask.rotateWord("This is some random text (text).", wordToRotate, 1));
 
         // SecondTask.containsAny() example
